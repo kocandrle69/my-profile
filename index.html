@@ -9,8 +9,6 @@
   <style>
     :root{
       --bg: #0b0f14;
-      --panel: rgba(255,255,255,.06);
-      --panel2: rgba(255,255,255,.04);
       --text: rgba(255,255,255,.90);
       --muted: rgba(255,255,255,.68);
       --muted2: rgba(255,255,255,.52);
@@ -40,6 +38,7 @@
     a:hover{ color: white; }
     .wrap{ max-width: var(--max); margin: 0 auto; padding: 28px 22px 70px; }
 
+    /* Nav */
     .nav{
       display:flex; align-items:center; justify-content:space-between;
       gap:12px; padding: 10px 0 18px;
@@ -53,7 +52,7 @@
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       box-shadow: 0 0 0 4px rgba(115,208,255,.10);
     }
-    .navlinks{ display:flex; gap:14px; align-items:center; }
+    .navlinks{ display:flex; gap:14px; align-items:center; flex-wrap: wrap; justify-content:flex-end; }
     .navlinks a{
       color: var(--muted);
       padding: 8px 10px;
@@ -66,18 +65,21 @@
       background: rgba(255,255,255,.03);
     }
 
+    /* Cards */
+    .card{
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+    }
+
+    /* Hero */
     .hero{
       padding: 28px 0 22px;
       display:grid;
       grid-template-columns: 1.2fr .8fr;
       gap: 22px;
       align-items: start;
-    }
-    .card{
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
     }
     .heroCard{ padding: 28px; }
     h1{
@@ -93,15 +95,7 @@
       line-height: 1.55;
       max-width: 64ch;
     }
-    .pills{ display:flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-    .pill{
-      font-size: 13px;
-      color: var(--muted);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      padding: 8px 11px;
-      border-radius: 999px;
-    }
+
     .ctaRow{ display:flex; gap:10px; flex-wrap: wrap; margin-top: 18px; }
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:8px;
@@ -122,6 +116,17 @@
     }
     .btn.primary:hover{ filter: brightness(1.05); }
 
+    .pills{ display:flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .pill{
+      font-size: 13px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      padding: 8px 11px;
+      border-radius: 999px;
+    }
+
+    /* Side card */
     .sideCard{ padding: 18px; }
     .sideTitle{ font-weight: 650; margin: 0 0 6px; }
     .sideText{
@@ -140,6 +145,7 @@
     .miniItem b{ display:block; font-size: 13.5px; margin-bottom: 3px; }
     .miniItem span{ color: var(--muted2); font-size: 13px; line-height: 1.45; display:block; }
 
+    /* Sections */
     section{ padding: 18px 0; }
     .grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 18px; }
     .sectionCard{ padding: 18px; border-radius: var(--radius); }
@@ -148,54 +154,6 @@
     ul{ margin: 10px 0 0; padding-left: 18px; color: var(--muted); }
     li{ margin: 6px 0; }
 
-    .project{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  align-items: start;
-}
-
-.shot{
-  border-radius: 16px;
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,.03);
-  overflow: hidden;
-
-  /* důležité: zruší „obří box“ */
-  min-height: unset;
-
-  /* přidá vzduch kolem obrázku */
-  padding: 14px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.shot img{
-  /* důležité: NE 100% šířky */
-  width: auto;
-  height: auto;
-
-  /* tohle reálně zmenší na ~40% “vizuální velikosti” */
-  max-height: 420px;
-  max-width: 60%;
-
-  /* ať se nikdy neořízne */
-  object-fit: contain;
-
-  display:block;
-  border-radius: 14px;
-}
-
-    
-    .shot .placeholder{
-      color: var(--muted2);
-      font-size: 13.5px;
-      padding: 18px;
-      text-align: center;
-      line-height: 1.5;
-    }
     .tagRow{ display:flex; flex-wrap: wrap; gap:10px; margin-top: 12px; }
     .tag{
       font-size: 12.5px;
@@ -206,6 +164,51 @@
       background: rgba(255,255,255,.03);
     }
 
+    /* Generic two-column project (used by Podcast) */
+    .project{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    /* Shared screenshot container */
+    .shot{
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      overflow: hidden;
+      padding: 12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height: unset;
+    }
+    .shot img{
+      width: auto;
+      height: auto;
+      max-height: 420px;
+      max-width: 60%;
+      object-fit: contain;
+      display:block;
+      border-radius: 14px;
+    }
+
+    /* VarnishCalc: 3 screenshots in a row below text */
+    .shotsGrid{
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      align-items: start;
+    }
+    .shotsGrid .shot img{
+      width: 100%;
+      max-width: none;     /* override the generic 60% */
+      max-height: 520px;   /* keep section compact */
+    }
+
+    /* Footer */
     footer{
       margin-top: 26px;
       padding-top: 22px;
@@ -227,10 +230,22 @@
     }
     .icon:hover{ color: white; border-color: rgba(255,255,255,.18); }
 
-    @media (max-width: 880px){
+    /* Responsive */
+    @media (max-width: 980px){
       .hero{ grid-template-columns: 1fr; }
       .grid{ grid-template-columns: 1fr; }
       .project{ grid-template-columns: 1fr; }
+
+      .shotsGrid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .shotsGrid .shot:nth-child(3){ grid-column: 1 / -1; }
+
+      /* make screenshots a bit wider on smaller screens */
+      .shot img{ max-width: 80%; }
+    }
+
+    @media (max-width: 600px){
+      .shotsGrid{ grid-template-columns: 1fr; }
+      .shot img{ max-width: 100%; max-height: 520px; }
     }
   </style>
 </head>
@@ -247,13 +262,14 @@
         <a href="#projects">Projects</a>
         <a href="#work">Work</a>
         <a href="#karauli">Karauli</a>
+        <a href="#podcast">Podcast</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
 
     <div class="hero">
       <div class="card heroCard">
-        <h1>Curious mind.<br/>Coding enthusiast.<br/>Process & technology.</h1>
+        <h1>Curious mind.<br/>Coding enthusiast.<br/>Process &amp; technology.</h1>
         <p class="lead">
           I like building things — sometimes in code, sometimes in the real world.
           I enjoy structuring complexity, automating the repetitive, and getting from uncertainty to facts.
@@ -266,8 +282,8 @@
 
         <div class="pills">
           <span class="pill">Python · automation</span>
-          <span class="pill">Data & problem solving</span>
-          <span class="pill">Manufacturing & materials</span>
+          <span class="pill">Data &amp; problem solving</span>
+          <span class="pill">Manufacturing &amp; materials</span>
           <span class="pill">Curiosity-driven learning</span>
         </div>
       </div>
@@ -327,40 +343,40 @@
     </section>
 
     <section id="projects">
-  <div class="card sectionCard">
-    <h2>VarnishCalc</h2>
-    <p>
-      A professional coating calculator designed for internal coating applications.
-      It translates process inputs into clear, actionable coating values — reducing manual calculations
-      and improving consistency.
-    </p>
+      <div class="card sectionCard">
+        <h2>VarnishCalc</h2>
+        <p>
+          A professional coating calculator designed for internal coating applications.
+          It translates process inputs into clear, actionable coating values — reducing manual calculations
+          and improving consistency.
+        </p>
 
-    <p>
-      <b>What it does:</b> Calculates coating weight and thickness based on process parameters.<br/>
-      <b>Focus:</b> Internal coatings for aluminum packaging.<br/>
-      <b>Output:</b> Dry & wet layer weight (g/can, g/m²) and thickness (µm).
-    </p>
+        <p>
+          <b>What it does:</b> Calculates coating weight and thickness based on process parameters.<br/>
+          <b>Focus:</b> Internal coatings for aluminum packaging.<br/>
+          <b>Output:</b> Dry &amp; wet layer weight (g/can, g/m²) and thickness (µm).
+        </p>
 
-    <div class="tagRow">
-      <span class="tag">Python</span>
-      <span class="tag">engineering calculator</span>
-      <span class="tag">coatings</span>
-      <span class="tag">process support</span>
-    </div>
+        <div class="tagRow">
+          <span class="tag">Python</span>
+          <span class="tag">engineering calculator</span>
+          <span class="tag">coatings</span>
+          <span class="tag">process support</span>
+        </div>
 
-    <div class="shotsGrid">
-      <div class="shot">
-        <img src="varnishcalc-hero.png" alt="VarnishCalc home screen" />
+        <div class="shotsGrid">
+          <div class="shot">
+            <img src="varnishcalc-hero.png" alt="VarnishCalc home screen" />
+          </div>
+          <div class="shot">
+            <img src="varnishcalc-results.png" alt="VarnishCalc calculation results" />
+          </div>
+          <div class="shot">
+            <img src="varnishcalc-selection.png" alt="VarnishCalc coating selection" />
+          </div>
+        </div>
       </div>
-      <div class="shot">
-        <img src="varnishcalc-results.png" alt="VarnishCalc calculation results" />
-      </div>
-      <div class="shot">
-        <img src="varnishcalc-selection.png" alt="VarnishCalc coating selection" />
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
     <section id="work">
       <div class="grid">
@@ -390,55 +406,48 @@
           We regularly visit Karauli Shankar Mahadev Dham — a place that helps slow down,
           reset perspective, and reconnect with what matters.
         </p>
-        <p style="color: var(--muted2); font-size: 13.5px; margin-top: 10px;">
-          (If you want, we can add a single subtle photo here—kept minimal.)
-        </p>
       </div>
     </section>
 
-
-
     <section id="podcast">
-  <div class="card sectionCard">
-    <h2>Meditation Podcast</h2>
-    <p>
-      Together with the ashram, we created a small meditation podcast.
-      It’s a simple, calm format — guided meditations and music — meant to be practical,
-      grounded, and easy to return to.
-    </p>
-
-    <div class="project">
-      <div>
+      <div class="card sectionCard">
+        <h2>Meditation Podcast</h2>
         <p>
-          <b>Origin:</b> Karauli Shankar Mahadev Dham<br/>
-          <b>Format:</b> Short guided meditations and music sessions<br/>
-          <b>Focus:</b> Clarity, intention, and inner balance — without unnecessary complexity
+          Together with the ashram, we created a small meditation podcast.
+          It’s a simple, calm format — guided meditations and music — meant to be practical,
+          grounded, and easy to return to.
         </p>
 
-        <div class="tagRow">
-          <span class="tag">meditation</span>
-          <span class="tag">audio</span>
-          <span class="tag">simplicity</span>
-          <span class="tag">practice</span>
-        </div>
+        <div class="project">
+          <div>
+            <p>
+              <b>Origin:</b> Karauli Shankar Mahadev Dham<br/>
+              <b>Format:</b> Short guided meditations and music sessions<br/>
+              <b>Focus:</b> Clarity, intention, and inner balance — without unnecessary complexity
+            </p>
 
-        <div class="ctaRow" style="margin-top:12px;">
-          <a class="btn" href="https://kocandrle69.github.io/meditace-podcast/" target="_blank" rel="noopener">
-            Open podcast
-          </a>
+            <div class="tagRow">
+              <span class="tag">meditation</span>
+              <span class="tag">audio</span>
+              <span class="tag">simplicity</span>
+              <span class="tag">practice</span>
+            </div>
+
+            <div class="ctaRow" style="margin-top:12px;">
+              <a class="btn" href="https://kocandrle69.github.io/meditace-podcast/" target="_blank" rel="noopener">
+                Open podcast
+              </a>
+            </div>
+          </div>
+
+          <div class="shot">
+            <img src="podcast-screenshot.png" alt="Meditation podcast screenshot" />
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="shot">
-        <!-- Save your screenshot as podcast-screenshot.png next to index.html -->
-        <img src="podcast-screenshot.png" alt="Meditation podcast screenshot" />
-      </div>
-    </div>
-  </div>
-</section>
-
-
-        <section id="contact">
+    <section id="contact">
       <div class="card sectionCard">
         <h2>Contact</h2>
         <p>
@@ -451,9 +460,6 @@
         </div>
       </div>
     </section>
-
-
-    
 
     <footer>
       <div>Built simply. Thinking deeply.</div>
