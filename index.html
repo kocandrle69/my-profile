@@ -1,58 +1,436 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jan Kocandrle | Profil</title>
-    <style>
-        :root { --bg: #050505; --card: #121212; --accent: #007aff; --text: #f5f5f7; }
-        body { font-family: -apple-system, system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
-        .wrapper { width: 90%; max-width: 450px; text-align: center; }
-        .glass-card { background: var(--card); border: 1px solid #2c2c2e; border-radius: 30px; padding: 40px 25px; box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
-        h1 { font-size: 1.8rem; margin: 0; letter-spacing: -0.5px; }
-        .subtitle { color: var(--accent); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-top: 8px; margin-bottom: 25px; letter-spacing: 1px; }
-        .bio { font-size: 0.95rem; color: #a1a1a6; line-height: 1.6; margin-bottom: 30px; }
-        
-        .interests { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 30px; }
-        .interest-tag { background: #1c1c1e; border: 1px solid #3a3a3c; padding: 6px 14px; border-radius: 100px; font-size: 0.75rem; color: #d1d1d6; }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Osobní stránka – Jan Kočandrle" />
+  <title>Jan Kočandrle</title>
 
-        .links { display: flex; flex-direction: column; gap: 12px; }
-        .btn { padding: 14px; border-radius: 14px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.2s; }
-        .btn-main { background: var(--accent); color: white; }
-        .btn-main:hover { background: #0062cc; transform: scale(1.02); }
-        .btn-outline { border: 1px solid #3a3a3c; color: white; }
-        .btn-outline:hover { background: #1c1c1e; }
-        
-        footer { margin-top: 30px; font-size: 0.7rem; color: #48484a; }
-    </style>
+  <style>
+    :root{
+      --bg: #0b0f14;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.04);
+      --text: rgba(255,255,255,.90);
+      --muted: rgba(255,255,255,.68);
+      --muted2: rgba(255,255,255,.52);
+      --line: rgba(255,255,255,.10);
+      --accent: #73d0ff;
+      --accent2: #a78bfa;
+      --shadow: 0 24px 80px rgba(0,0,0,.55);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1040px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 15% 10%, rgba(115,208,255,.18), transparent 55%),
+                  radial-gradient(900px 700px at 85% 35%, rgba(167,139,250,.14), transparent 55%),
+                  radial-gradient(900px 600px at 50% 110%, rgba(255,255,255,.06), transparent 60%),
+                  var(--bg);
+      letter-spacing: .2px;
+    }
+
+    a{ color: var(--text); text-decoration: none; }
+    a:hover{ color: white; }
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 28px 22px 70px; }
+
+    /* Top nav */
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; padding: 10px 0 18px;
+      position: sticky; top: 0; backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(11,15,20,.85), rgba(11,15,20,.35) 70%, transparent);
+      z-index: 10;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight: 650;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 4px rgba(115,208,255,.10);
+    }
+    .navlinks{ display:flex; gap:14px; align-items:center; }
+    .navlinks a{
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+    .navlinks a:hover{
+      color: white;
+      border-color: var(--line);
+      background: rgba(255,255,255,.03);
+    }
+
+    /* Hero */
+    .hero{
+      padding: 28px 0 22px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 22px;
+      align-items: start;
+    }
+    .card{
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+    }
+    .heroCard{ padding: 28px; }
+    h1{
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.05;
+      margin: 0 0 10px;
+      letter-spacing: -0.6px;
+    }
+    .lead{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 16.5px;
+      line-height: 1.55;
+      max-width: 64ch;
+    }
+    .pills{
+      display:flex; flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .pill{
+      font-size: 13px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      padding: 8px 11px;
+      border-radius: 999px;
+    }
+    .ctaRow{ display:flex; gap:10px; flex-wrap: wrap; margin-top: 18px; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: white;
+      font-weight: 620;
+      font-size: 14px;
+    }
+    .btn:hover{ border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.06); }
+    .btn.primary{
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #0b0f14;
+      box-shadow: 0 10px 28px rgba(115,208,255,.14);
+    }
+    .btn.primary:hover{ filter: brightness(1.05); }
+
+    /* Side card */
+    .sideCard{ padding: 18px; }
+    .sideTitle{
+      font-weight: 650;
+      margin: 0 0 6px;
+    }
+    .sideText{
+      margin: 0 0 10px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14.5px;
+    }
+    .mini{
+      display:flex; flex-direction: column; gap:10px;
+      margin-top: 14px;
+    }
+    .miniItem{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: 14px;
+      padding: 12px 12px;
+    }
+    .miniItem b{ display:block; font-size: 13.5px; margin-bottom: 3px; }
+    .miniItem span{ color: var(--muted2); font-size: 13px; line-height: 1.45; display:block; }
+
+    /* Sections */
+    section{ padding: 18px 0; }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .sectionCard{ padding: 18px; border-radius: var(--radius); }
+    h2{
+      margin: 0 0 8px;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+    }
+    p{
+      margin: 0 0 10px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+    ul{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    li{ margin: 6px 0; }
+
+    /* Project block */
+    .project{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+    .shot{
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      overflow:hidden;
+      min-height: 220px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position: relative;
+    }
+    .shot img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+    .shot .placeholder{
+      color: var(--muted2);
+      font-size: 13.5px;
+      padding: 18px;
+      text-align: center;
+      line-height: 1.5;
+    }
+    .tagRow{ display:flex; flex-wrap: wrap; gap:10px; margin-top: 12px; }
+    .tag{
+      font-size: 12.5px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 26px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      display:flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: var(--muted2);
+      font-size: 13px;
+    }
+    .icons{ display:flex; gap:10px; }
+    .icon{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: 12px;
+      padding: 9px 10px;
+      color: var(--muted);
+    }
+    .icon:hover{ color: white; border-color: rgba(255,255,255,.18); }
+
+    /* Responsive */
+    @media (max-width: 880px){
+      .hero{ grid-template-columns: 1fr; }
+      .grid{ grid-template-columns: 1fr; }
+      .project{ grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-<body>
 
-<div class="wrapper">
-    <div class="glass-card">
-        <h1>Jan Kocandrle</h1>
-        <div class="subtitle">Global Support & Developer</div>
-        
-        <p class="bio">
-            Průmyslový specialista s vášní pro precizní analýzu dat a vývoj nativních Apple aplikací. Spojuji svět lakování hliníkových tub s moderním kódováním.
+<body>
+  <div class="wrap">
+    <div class="nav">
+      <div class="brand">
+        <span class="dot"></span>
+        <span>Jan Kočandrle</span>
+      </div>
+      <div class="navlinks">
+        <a href="#coding">Coding</a>
+        <a href="#projects">Projects</a>
+        <a href="#work">Work</a>
+        <a href="#karauli">Karauli</a>
+        <a href="#contact">Kontakt</a>
+      </div>
+    </div>
+
+    <div class="hero">
+      <div class="card heroCard">
+        <h1>Curious mind.<br/>Coding enthusiast.<br/>Process & technology.</h1>
+        <p class="lead">
+          Rád stavím věci – někdy v kódu, někdy v reálném světě. Baví mě strukturovat komplexitu,
+          automatizovat, zjednodušovat a hledat příčiny problémů od prvních principů.
         </p>
 
-        <div class="interests">
-            <span class="interest-tag">Hliníkové tuby</span>
-            <span class="interest-tag">Swift & watchOS</span>
-            <span class="interest-tag">Xcode</span>
-            <span class="interest-tag">Data Analysis</span>
-            <span class="interest-tag">Global Support</span>
+        <div class="ctaRow">
+          <a class="btn primary" href="#projects">Podívat se na projekty</a>
+          <a class="btn" href="#contact">Kontakt</a>
         </div>
 
-        <div class="links">
-            <a href="https://kocandrle69.github.io" class="btn btn-main">Aplikace VarnishCalc</a>
-            <a href="mailto:kocandrle@email.cz" class="btn btn-outline">Kontaktovat</a>
+        <div class="pills">
+          <span class="pill">Python · automation</span>
+          <span class="pill">Data & problem solving</span>
+          <span class="pill">Manufacturing & coatings</span>
+          <span class="pill">Curiosity-driven learning</span>
         </div>
+      </div>
 
-        <footer>&copy; 2026 Crafted with precision</footer>
+      <div class="card sideCard">
+        <p class="sideTitle">Teď zrovna</p>
+        <p class="sideText">
+          Stavím malé nástroje, které šetří čas a dělají rozhodování méně „ruční“.
+        </p>
+
+        <div class="mini">
+          <div class="miniItem">
+            <b>Focus</b>
+            <span>Jednoduchost, čitelnost, užitek. Minimum okázalosti.</span>
+          </div>
+          <div class="miniItem">
+            <b>Styl práce</b>
+            <span>Iterace, testování v praxi, krátké zpětné smyčky.</span>
+          </div>
+          <div class="miniItem">
+            <b>Kontakt</b>
+            <span>Nejrychleji přes email / LinkedIn.</span>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
 
+    <section id="coding">
+      <div class="grid">
+        <div class="card sectionCard">
+          <h2>Coding jako způsob myšlení</h2>
+          <p>
+            Kódování pro mě není jen technická dovednost. Je to metoda, jak dát věcem strukturu,
+            zjednodušit komplexitu a postavit nástroje, které opravdu pomáhají.
+          </p>
+          <ul>
+            <li>automatizace rutinních kroků</li>
+            <li>zpracování dat a rychlé analýzy</li>
+            <li>malé appky s jasným účelem</li>
+          </ul>
+        </div>
+
+        <div class="card sectionCard">
+          <h2>Principy</h2>
+          <p>
+            Preferuju čistou logiku před „shiny“ frameworky. Věci mají být pochopitelné, udržovatelné
+            a použitelné i za půl roku.
+          </p>
+          <div class="tagRow">
+            <span class="tag">clarity &gt; complexity</span>
+            <span class="tag">small tools, real impact</span>
+            <span class="tag">measure, then decide</span>
+            <span class="tag">iterate fast</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="card sectionCard">
+        <h2>Side project</h2>
+        <p>
+          Malá aplikace postavená pro konkrétní problém z praxe. Důraz na jednoduchost, jasnou logiku a použitelnost.
+        </p>
+
+        <div class="project">
+          <div>
+            <p>
+              <b>Co dělá:</b> (doplníš 1–2 věty)<br/>
+              <b>Pro koho:</b> (doplníš)<br/>
+              <b>Tech:</b> Python · lightweight UI · local data processing
+            </p>
+            <div class="tagRow">
+              <span class="tag">automation</span>
+              <span class="tag">data processing</span>
+              <span class="tag">practical tooling</span>
+            </div>
+          </div>
+
+          <div class="shot">
+            <!-- Vlož screenshot: pojmenuj soubor třeba app-screenshot.png a dej ho vedle index.html -->
+            <!-- <img src="app-screenshot.png" alt="App screenshot" /> -->
+            <div class="placeholder">
+              Screenshot sem doplníš tak, že odkomentuješ řádek s &lt;img&gt; a přidáš soubor
+              <b>app-screenshot.png</b> vedle tohoto HTML.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="grid">
+        <div class="card sectionCard">
+          <h2>Professional background</h2>
+          <p>
+            Pracuju na pomezí technologií, výrobních procesů a materiálů. Nejvíc mě baví situace,
+            kde se potkává chemie, mechanika a data — a je potřeba přijít na to, co je skutečná příčina problému.
+          </p>
+        </div>
+
+        <div class="card sectionCard">
+          <h2>Jak přemýšlím</h2>
+          <p>
+            Když něco nefunguje, hledám rychlou cestu k faktům: co víme, co jen předpokládáme,
+            a jaký nejmenší test nám dá informaci, která posune rozhodnutí.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="karauli">
+      <div class="card sectionCard">
+        <h2>Karauli Shankar Mahadev Dham</h2>
+        <p>
+          Některé věci se do „profesního profilu“ nevejdou, ale dávají smysl pro rovnováhu.
+          Pravidelně navštěvujeme Karauli Shankar Mahadev Dham — místo, které pomáhá zklidnit hlavu,
+          resetovat perspektivu a vrátit se k tomu podstatnému.
+        </p>
+        <p style="color: var(--muted2); font-size: 13.5px; margin-top: 10px;">
+          (Pokud chceš, můžeme sem přidat jednu fotku/mood image – velmi střídmě.)
+        </p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="card sectionCard">
+        <h2>Kontakt</h2>
+        <p>
+          Nejlépe přes email nebo LinkedIn. (Doplň odkazy níže.)
+        </p>
+        <div class="ctaRow">
+          <a class="btn" href="mailto:YOUR_EMAIL_HERE">Email</a>
+          <a class="btn" href="https://www.linkedin.com/in/YOUR_PROFILE" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/YOUR_GITHUB" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>Built simply. Thinking deeply.</div>
+      <div class="icons">
+        <a class="icon" href="#top" aria-label="Top">↑</a>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
