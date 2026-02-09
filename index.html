@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jan Kocandrle | Profil</title>
+    <style>
+        :root { --bg: #050505; --card: #121212; --accent: #007aff; --text: #f5f5f7; }
+        body { font-family: -apple-system, system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+        .wrapper { width: 90%; max-width: 450px; text-align: center; }
+        .glass-card { background: var(--card); border: 1px solid #2c2c2e; border-radius: 30px; padding: 40px 25px; box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
+        h1 { font-size: 1.8rem; margin: 0; letter-spacing: -0.5px; }
+        .subtitle { color: var(--accent); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-top: 8px; margin-bottom: 25px; letter-spacing: 1px; }
+        .bio { font-size: 0.95rem; color: #a1a1a6; line-height: 1.6; margin-bottom: 30px; }
+        
+        .interests { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 30px; }
+        .interest-tag { background: #1c1c1e; border: 1px solid #3a3a3c; padding: 6px 14px; border-radius: 100px; font-size: 0.75rem; color: #d1d1d6; }
+
+        .links { display: flex; flex-direction: column; gap: 12px; }
+        .btn { padding: 14px; border-radius: 14px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.2s; }
+        .btn-main { background: var(--accent); color: white; }
+        .btn-main:hover { background: #0062cc; transform: scale(1.02); }
+        .btn-outline { border: 1px solid #3a3a3c; color: white; }
+        .btn-outline:hover { background: #1c1c1e; }
+        
+        footer { margin-top: 30px; font-size: 0.7rem; color: #48484a; }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="glass-card">
+        <h1>Jan Kocandrle</h1>
+        <div class="subtitle">Global Support & Developer</div>
+        
+        <p class="bio">
+            Průmyslový specialista s vášní pro precizní analýzu dat a vývoj nativních Apple aplikací. Spojuji svět lakování hliníkových tub s moderním kódováním.
+        </p>
+
+        <div class="interests">
+            <span class="interest-tag">Hliníkové tuby</span>
+            <span class="interest-tag">Swift & watchOS</span>
+            <span class="interest-tag">Xcode</span>
+            <span class="interest-tag">Data Analysis</span>
+            <span class="interest-tag">Global Support</span>
+        </div>
+
+        <div class="links">
+            <a href="https://kocandrle69.github.io" class="btn btn-main">Aplikace VarnishCalc</a>
+            <a href="mailto:kocandrle@email.cz" class="btn btn-outline">Kontaktovat</a>
+        </div>
+
+        <footer>&copy; 2026 Crafted with precision</footer>
+    </div>
+</div>
+
+</body>
+</html>
