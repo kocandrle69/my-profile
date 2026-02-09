@@ -148,24 +148,47 @@
     ul{ margin: 10px 0 0; padding-left: 18px; color: var(--muted); }
     li{ margin: 6px 0; }
 
-    .project{ display:grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
-    .shot{
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      overflow:hidden;
-      min-height: 220px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .shot img{
-  width: 100%;
-  height: auto;
-  display: block;
-  max-width: 420px;   /* ⬅ cca 40 % desktopu */
-  margin: 0 auto;     /* ⬅ vycentruje */
+    .project{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
 }
+
+.shot{
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.03);
+  overflow: hidden;
+
+  /* důležité: zruší „obří box“ */
+  min-height: unset;
+
+  /* přidá vzduch kolem obrázku */
+  padding: 14px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.shot img{
+  /* důležité: NE 100% šířky */
+  width: auto;
+  height: auto;
+
+  /* tohle reálně zmenší na ~40% “vizuální velikosti” */
+  max-height: 420px;
+  max-width: 60%;
+
+  /* ať se nikdy neořízne */
+  object-fit: contain;
+
+  display:block;
+  border-radius: 14px;
+}
+
+    
     .shot .placeholder{
       color: var(--muted2);
       font-size: 13.5px;
