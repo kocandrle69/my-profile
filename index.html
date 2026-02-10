@@ -57,40 +57,92 @@
   padding: 28px 22px 70px;
 }
 
-    /* Nav */
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px; padding: 10px 0 18px;
-      position: sticky; top: 0; backdrop-filter: blur(10px);
-      background: linear-gradient(to bottom, rgba(11,15,20,.85), rgba(11,15,20,.35) 70%, transparent);
-      z-index: 10;
-    }
-    .brand{ display:flex; align-items:center; gap:10px; font-weight: 650; }
-    .dot{
-      width:10px; height:10px; border-radius:999px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 0 0 4px rgba(115,208,255,.10);
-    }
-    .navlinks{ display:flex; gap:14px; align-items:center; flex-wrap: wrap; justify-content:flex-end; }
-    .navlinks a{
-      color: var(--muted);
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-    }
-    .navlinks a:hover{
-      color: white;
-      border-color: var(--line);
-      background: rgba(255,255,255,.03);
-    }
+    a{ color: var(--text); text-decoration: none; }
+a:hover{ color: white; }
 
-    /* Cards */
-    .card{
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-    }
+    /* Nav */
+  .nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding: 10px 0 12px;
+
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  /* glass look – bez černé desky */
+  background: rgba(11,15,20,.22);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+
+  /* jemná linka místo „hrany“ */
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+/* zjemní přechod (Safari) – odstraní viditelný “cut” */
+@supports (-webkit-mask-image: linear-gradient(#000,#000)){
+  .nav{
+    -webkit-mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
+  }
+}
+
+    .navlinks{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  flex-wrap: wrap;
+  justify-content:flex-end;
+}
+
+.navlinks a{
+  color: var(--muted);
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  text-decoration: none !important;
+}
+
+@media (max-width: 600px){
+  .nav{
+    padding: 10px 0 10px;
+    align-items: flex-start;
+  }
+
+  .navlinks{
+    gap: 8px;
+
+    /* klíčové: žádné lámání do řádků */
+    flex-wrap: nowrap;
+
+    /* místo toho posuv doprava */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    /* aby to nevytlačilo brand */
+    max-width: 58vw;
+    padding-bottom: 6px;
+  }
+
+  .navlinks a{
+    padding: 6px 9px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .navlinks::-webkit-scrollbar{ display:none; }
+}
+
+    .btn{ text-decoration: none !important; }
+
+    .brand{ display:flex; align-items:center; gap:10px; font-weight: 650; }
+.dot{
+  width:10px; height:10px; border-radius:999px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  box-shadow: 0 0 0 4px rgba(115,208,255,.10);
+}
 
     /* Hero */
     .hero{
