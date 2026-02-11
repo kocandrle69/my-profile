@@ -1,542 +1,342 @@
 <!doctype html>
-<html lang="en" id="top">
+<html lang="cs" id="top">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Personal site – Jan Kočandrle" />
-  <title>Jan Kočandrle</title>
+  <meta name="description" content="Jan Kočandrle – Process & Technology Specialist" />
+  <title>Jan Kočandrle | Systems & Processes</title>
 
   <style>
-    :root{
-      --bg: #0b0f14;
-      --text: rgba(255,255,255,.90);
-      --muted: rgba(255,255,255,.68);
-      --muted2: rgba(255,255,255,.52);
-      --line: rgba(255,255,255,.10);
-      --accent: #73d0ff;
-      --accent2: #a78bfa;
-      --shadow: 0 24px 80px rgba(0,0,0,.55);
-      --radius: 18px;
-      --radius2: 26px;
-      --max: 1040px;
+    :root {
+      --bg: #04070a;
+      --text: rgba(255,255,255,0.94);
+      --muted: rgba(255,255,255,0.6);
+      --accent: #007AFF; /* Apple Blue */
+      --accent-glow: rgba(0, 122, 255, 0.3);
+      --glass: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --max-width: 1100px;
     }
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
       color: var(--text);
-      background:
-        radial-gradient(1000px 700px at 18% 12%, rgba(115,208,255,.12), transparent 72%),
-        radial-gradient(900px 650px at 82% 30%, rgba(167,139,250,.10), transparent 74%),
-        radial-gradient(900px 700px at 50% 120%, rgba(255,255,255,.05), transparent 78%),
-        var(--bg);
-      letter-spacing: .2px;
+      line-height: 1.5;
+      overflow-x: hidden;
     }
 
-    body::before{
-  content:"";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  opacity: .06;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px 256px;
-  background-position: 37px 19px;
-  mix-blend-mode: soft-light;
-}
-
-.wrap{
-  position: relative;
-  z-index: 1;
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 28px 22px 70px;
-}
-
-    a{ color: var(--text); text-decoration: none; }
-a:hover{ color: white; }
-
-    /* Nav */
-  .nav{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding: 10px 0 12px;
-
-  position: sticky;
-  top: 0;
-  z-index: 10;
-
-  /* glass look – bez černé desky */
-  background: rgba(11,15,20,.22);
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
-
-  /* jemná linka místo „hrany“ */
-  border-bottom: 1px solid rgba(255,255,255,.06);
-}
-
-/* zjemní přechod (Safari) – odstraní viditelný “cut” */
-@supports (-webkit-mask-image: linear-gradient(#000,#000)){
-  .nav{
-    -webkit-mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
-    mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
-  }
-}
-
-    .navlinks{
-  display:flex;
-  gap:14px;
-  align-items:center;
-  flex-wrap: wrap;
-  justify-content:flex-end;
-}
-
-.navlinks a{
-  color: var(--muted);
-  padding: 8px 10px;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  text-decoration: none !important;
-}
-
-@media (max-width: 600px){
-  .nav{
-    padding: 10px 0 10px;
-    align-items: flex-start;
-  }
-
-  .navlinks{
-    gap: 8px;
-
-    /* klíčové: žádné lámání do řádků */
-    flex-wrap: nowrap;
-
-    /* místo toho posuv doprava */
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-
-    /* aby to nevytlačilo brand */
-    max-width: 58vw;
-    padding-bottom: 6px;
-  }
-
-  .navlinks a{
-    padding: 6px 9px;
-    font-size: 14px;
-    white-space: nowrap;
-  }
-
-  .navlinks::-webkit-scrollbar{ display:none; }
-}
-
-    .btn{ text-decoration: none !important; }
-
-    .brand{ display:flex; align-items:center; gap:10px; font-weight: 650; }
-.dot{
-  width:10px; height:10px; border-radius:999px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  box-shadow: 0 0 0 4px rgba(115,208,255,.10);
-}
-
-    /* Hero */
-    .hero{
-      padding: 28px 0 22px;
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 22px;
-      align-items: start;
-    }
-    .heroCard{ padding: 28px; }
-    h1{
-      font-size: clamp(28px, 4vw, 44px);
-      line-height: 1.05;
-      margin: 0 0 10px;
-      letter-spacing: -0.6px;
-    }
-    .lead{
-      margin: 0 0 18px;
-      color: var(--muted);
-      font-size: 16.5px;
-      line-height: 1.55;
-      max-width: 64ch;
-    }
-
-    .ctaRow{ display:flex; gap:10px; flex-wrap: wrap; margin-top: 18px; }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      color: white;
-      font-weight: 620;
-      font-size: 14px;
-    }
-    .btn:hover{ border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.06); }
-    .btn.primary{
-      border: none;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #0b0f14;
-      box-shadow: 0 10px 28px rgba(115,208,255,.14);
-    }
-    .btn.primary:hover{ filter: brightness(1.05); }
-
-    .pills{ display:flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-    .pill{
-      font-size: 13px;
-      color: var(--muted);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      padding: 8px 11px;
-      border-radius: 999px;
-    }
-
-    /* Side card */
-    .sideCard{ padding: 18px; }
-    .sideTitle{ font-weight: 650; margin: 0 0 6px; }
-    .sideText{
-      margin: 0 0 10px;
-      color: var(--muted);
-      line-height: 1.55;
-      font-size: 14.5px;
-    }
-    .mini{ display:flex; flex-direction: column; gap:10px; margin-top: 14px; }
-    .miniItem{
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      border-radius: 14px;
-      padding: 12px 12px;
-    }
-    .miniItem b{ display:block; font-size: 13.5px; margin-bottom: 3px; }
-    .miniItem span{ color: var(--muted2); font-size: 13px; line-height: 1.45; display:block; }
-
-    /* Sections */
-    section{ padding: 18px 0; }
-    .grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-    .sectionCard{ padding: 18px; border-radius: var(--radius); }
-    h2{ margin: 0 0 8px; font-size: 18px; letter-spacing: -0.2px; }
-    p{ margin: 0 0 10px; color: var(--muted); line-height: 1.6; font-size: 15px; }
-    ul{ margin: 10px 0 0; padding-left: 18px; color: var(--muted); }
-    li{ margin: 6px 0; }
-
-    .tagRow{ display:flex; flex-wrap: wrap; gap:10px; margin-top: 12px; }
-    .tag{
-      font-size: 12.5px;
-      color: var(--muted);
-      border: 1px solid var(--line);
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.03);
-    }
-
-    /* Generic two-column project (used by Podcast) */
-    .project{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      align-items: start;
-    }
-
-    /* Shared screenshot container */
-    .shot{
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
+    /* FIXED BACKGROUND - ELIMINUJE ŠVY */
+    .bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: var(--bg);
       overflow: hidden;
-      padding: 12px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      min-height: unset;
-    }
-    .shot img{
-      width: auto;
-      height: auto;
-      max-height: 420px;
-      max-width: 60%;
-      object-fit: contain;
-      display:block;
-      border-radius: 14px;
     }
 
-    /* VarnishCalc: 3 screenshots in a row below text */
-    .shotsGrid{
-      margin-top: 14px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      align-items: start;
-    }
-    .shotsGrid .shot img{
-      width: 100%;
-      max-width: none;     /* override the generic 60% */
-      max-height: 520px;   /* keep section compact */
+    .blob {
+      position: absolute;
+      width: 60vw;
+      height: 60vw;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      filter: blur(80px);
+      border-radius: 50%;
+      opacity: 0.5;
+      animation: drift 20s infinite alternate;
     }
 
-    /* Footer */
-    footer{
-      margin-top: 26px;
-      padding-top: 22px;
-      border-top: 1px solid var(--line);
-      display:flex;
+    .blob-2 {
+      right: -10%;
+      top: 20%;
+      background: radial-gradient(circle, rgba(167,139,250,0.15) 0%, transparent 70%);
+      animation: drift 25s infinite alternate-reverse;
+    }
+
+    @keyframes drift {
+      from { transform: translate(-10%, -10%) scale(1); }
+      to { transform: translate(10%, 10%) scale(1.1); }
+    }
+
+    /* NOISE OVERLAY */
+    .bg-canvas::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.03;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .wrap {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 20px;
+      z-index: 100;
+      margin-top: 20px;
+      background: rgba(10, 10, 10, 0.4);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 0.5px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 12px 24px;
+      display: flex;
       justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      color: var(--muted2);
-      font-size: 13px;
+      align-items: center;
     }
-    .icons{ display:flex; gap:10px; }
-    .icon{
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      border-radius: 12px;
-      padding: 9px 10px;
+
+    .brand { font-weight: 700; font-size: 18px; letter-spacing: -0.5px; }
+    .nav-links { display: flex; gap: 20px; }
+    .nav-links a { 
+        text-decoration: none; 
+        color: var(--muted); 
+        font-size: 14px; 
+        transition: color 0.3s;
+        font-weight: 500;
+    }
+    .nav-links a:hover { color: #fff; }
+
+    /* HERO */
+    .hero {
+      padding: 100px 0 60px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+    }
+
+    h1 {
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 1;
+      margin: 0 0 24px;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+      background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.5) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .lead {
+      font-size: 20px;
       color: var(--muted);
-    }
-    .icon:hover{ color: white; border-color: rgba(255,255,255,.18); }
-
-    /* Responsive */
-    @media (max-width: 980px){
-      .hero{ grid-template-columns: 1fr; }
-      .grid{ grid-template-columns: 1fr; }
-      .project{ grid-template-columns: 1fr; }
-
-      .shotsGrid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .shotsGrid .shot:nth-child(3){ grid-column: 1 / -1; }
-
-      /* make screenshots a bit wider on smaller screens */
-      .shot img{ max-width: 80%; }
+      max-width: 500px;
+      margin-bottom: 32px;
     }
 
-    @media (max-width: 600px){
-      .shotsGrid{ grid-template-columns: 1fr; }
-      .shot img{ max-width: 100%; max-height: 520px; }
+    /* GLASS CARD */
+    .card {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 0.5px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 32px;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 24px;
+      border-radius: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      font-size: 15px;
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: #000;
+    }
+
+    .btn-primary:hover { transform: scale(1.02); background: #f0f0f0; }
+
+    .btn-secondary {
+      background: var(--glass);
+      color: #fff;
+      border: 0.5px solid var(--glass-border);
+      margin-left: 12px;
+    }
+
+    /* SECTIONS */
+    section { padding: 60px 0; }
+    h2 { font-size: 32px; letter-spacing: -0.02em; margin-bottom: 24px; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+    /* VARNISH CALC SPECIFIC */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .stat-item {
+      padding: 16px;
+      background: rgba(255,255,255,0.02);
+      border-radius: 16px;
+      border: 0.5px solid var(--glass-border);
+    }
+    .stat-item span { display: block; font-size: 12px; color: var(--muted); text-transform: uppercase; }
+    .stat-item b { font-size: 18px; color: var(--accent); }
+
+    .screenshot-rack {
+      display: flex;
+      gap: 16px;
+      margin-top: 32px;
+      overflow-x: auto;
+      padding-bottom: 16px;
+    }
+    .screenshot-rack img {
+      height: 300px;
+      border-radius: 12px;
+      border: 0.5px solid var(--glass-border);
+      filter: grayscale(0.2);
+      transition: filter 0.3s;
+    }
+    .screenshot-rack img:hover { filter: grayscale(0); }
+
+    /* FOOTER */
+    footer {
+      padding: 60px 0;
+      border-top: 0.5px solid var(--glass-border);
+      color: var(--muted);
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 850px) {
+      .hero, .grid-2 { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
     }
   </style>
 </head>
 
 <body>
+  <div class="bg-canvas">
+    <div class="blob"></div>
+    <div class="blob blob-2"></div>
+  </div>
+
   <div class="wrap">
-    <div class="nav">
-      <div class="brand">
-        <span class="dot"></span>
-        <span>Jan Kočandrle</span>
-      </div>
-      <div class="navlinks">
-        <a href="#coding">Coding</a>
-        <a href="#projects">Projects</a>
-        <a href="#work">Work</a>
-        <a href="#karauli">Karauli</a>
-        <a href="#podcast">Podcast</a>
+    <nav class="nav">
+      <div class="brand">Jan Kočandrle</div>
+      <div class="nav-links">
+        <a href="#about">Systems</a>
+        <a href="#projects">VarnishCalc</a>
+        <a href="#podcast">Perspective</a>
         <a href="#contact">Contact</a>
       </div>
-    </div>
+    </nav>
 
-    <div class="hero">
-      <div class="card heroCard">
-        <h1>Curious mind.<br/>Coding enthusiast.<br/>Process &amp; technology.</h1>
+    <header class="hero">
+      <div class="hero-content">
+        <h1>Struktura.<br/>Proces.<br/>Fakta.</h1>
         <p class="lead">
-          I like building things — sometimes in code, sometimes in the real world.
-          I enjoy structuring complexity, automating the repetitive, and getting from uncertainty to facts.
+          Specialista na optimalizaci průmyslových procesů a povrchových úprav. 
+          V kódu i ve výrobě hledám bod, kde končí domněnky a začíná efektivita.
         </p>
-
-        <div class="ctaRow">
-          <a class="btn primary" href="#projects">See projects</a>
-          <a class="btn" href="#contact">Contact</a>
-        </div>
-
-        <div class="pills">
-          <span class="pill">Python · automation</span>
-          <span class="pill">Data &amp; problem solving</span>
-          <span class="pill">Manufacturing &amp; materials</span>
-          <span class="pill">Curiosity-driven learning</span>
+        <div class="cta">
+          <a href="#projects" class="btn btn-primary">Prozkoumat projekty</a>
+          <a href="mailto:kocandrle@email.cz" class="btn btn-secondary">Napsat email</a>
         </div>
       </div>
-
-      <div class="card sideCard">
-        <p class="sideTitle">Currently</p>
-        <p class="sideText">
-          Building small tools that save time and make decisions less manual.
-        </p>
-
-        <div class="mini">
-          <div class="miniItem">
-            <b>Focus</b>
-            <span>Simplicity, clarity, usefulness. Minimal noise.</span>
-          </div>
-          <div class="miniItem">
-            <b>Working style</b>
-            <span>Iterate fast, test in reality, shorten feedback loops.</span>
-          </div>
-          <div class="miniItem">
-            <b>Best reach</b>
-            <span>Email / LinkedIn.</span>
-          </div>
+      
+      <div class="card">
+        <h3 style="margin-top:0">Aktuální focus</h3>
+        <p style="font-size:14px; color:var(--muted)">Digitální dvojčata výrobních procesů a automatizace sběru dat v oblasti vnitřního lakování hliníkových obalů.</p>
+        <div class="stat-item" style="margin-bottom:10px">
+          <span>Odvětví</span>
+          <b>Global Support</b>
+        </div>
+        <div class="stat-item">
+          <span>Expertíza</span>
+          <b>Aluminium Tube Coating</b>
         </div>
       </div>
-    </div>
+    </header>
 
-    <section id="coding">
-      <div class="grid">
-        <div class="card sectionCard">
-          <h2>Coding as a way of thinking</h2>
-          <p>
-            For me, coding isn’t just a technical skill. It’s a method to structure ideas,
-            reduce complexity, and build tools that actually help.
-          </p>
-          <ul>
-            <li>automation of repetitive steps</li>
-            <li>data processing and quick analysis</li>
-            <li>small apps with a clear purpose</li>
-          </ul>
+    <section id="about">
+      <div class="grid-2">
+        <div class="card">
+          <h2>Analytické inženýrství</h2>
+          <p>Mytí, vnitřní lakování a potisk nejsou jen mechanické kroky. Jsou to chemicko-fyzikální rovnice. Pomáhám globálním týmům tyto rovnice pochopit a stabilizovat.</p>
         </div>
-
-        <div class="card sectionCard">
-          <h2>Principles</h2>
-          <p>
-            I prefer clean logic over shiny frameworks. Things should be understandable, maintainable,
-            and still usable six months later.
-          </p>
-          <div class="tagRow">
-            <span class="tag">clarity &gt; complexity</span>
-            <span class="tag">small tools, real impact</span>
-            <span class="tag">measure, then decide</span>
-            <span class="tag">iterate fast</span>
-          </div>
+        <div class="card">
+          <h2>Code jako nástroj</h2>
+          <p>Python a webové technologie používám k odstranění šumu. Stavím jednoúčelové nástroje, které řeší reálné problémy na linkách, ne složité systémy pro systémy.</p>
         </div>
       </div>
     </section>
 
     <section id="projects">
-      <div class="card sectionCard">
-        <h2>VarnishCalc</h2>
-        <p>
-          A professional coating calculator designed for internal coating applications.
-          It translates process inputs into clear, actionable coating values — reducing manual calculations
-          and improving consistency.
-        </p>
-
-        <p>
-          <b>What it does:</b> Calculates coating weight and thickness based on process parameters.<br/>
-          <b>Focus:</b> Internal coatings for aluminum packaging.<br/>
-          <b>Output:</b> Dry &amp; wet layer weight (g/can, g/m²) and thickness (µm).
-        </p>
-
-        <div class="tagRow">
-          <span class="tag">Python</span>
-          <span class="tag">engineering calculator</span>
-          <span class="tag">coatings</span>
-          <span class="tag">process support</span>
-        </div>
-
-        <div class="shotsGrid">
-          <div class="shot">
-            <img src="varnishcalc-hero.png" alt="VarnishCalc home screen" />
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:20px">
+          <div>
+            <h2 style="margin-top:0">VarnishCalc v2.0</h2>
+            <p style="max-width:600px">Klíčový algoritmus pro výpočet parametrů vnitřního lakování. Převádí procesní data (tlak, čas, viskozita) na exaktní tloušťku vrstvy v mikrometrech.</p>
           </div>
-          <div class="shot">
-            <img src="varnishcalc-results.png" alt="VarnishCalc calculation results" />
-          </div>
-          <div class="shot">
-            <img src="varnishcalc-selection.png" alt="VarnishCalc coating selection" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="work">
-      <div class="grid">
-        <div class="card sectionCard">
-          <h2>Professional background</h2>
-          <p>
-            I work at the intersection of technology, manufacturing processes, and materials.
-            I enjoy problems where chemistry, mechanics, and data meet — and where root cause matters.
-          </p>
+          <div class="btn btn-secondary" style="border-radius:30px">Internal Tool</div>
         </div>
 
-        <div class="card sectionCard">
-          <h2>How I approach problems</h2>
-          <p>
-            When something doesn’t work, I aim to get to facts quickly: what we know, what we assume,
-            and the smallest test that changes the decision.
-          </p>
+        <div class="stats-grid">
+          <div class="stat-item"><span>Vstup</span><b>Procesní parametry</b></div>
+          <div class="stat-item"><span>Výstup</span><b>Dry/Wet layer (µm)</b></div>
+          <div class="stat-item"><span>Materiál</span><b>Hliník / Epoxy-fenol</b></div>
+          <div class="stat-item"><span>Cíl</span><b>Zero-waste coating</b></div>
         </div>
-      </div>
-    </section>
 
-    <section id="karauli">
-      <div class="card sectionCard">
-        <h2>Karauli Shankar Mahadev Dham</h2>
-        <p>
-          Some things don’t fit into job titles, but they matter for balance.
-          We regularly visit Karauli Shankar Mahadev Dham — a place that helps slow down,
-          reset perspective, and reconnect with what matters.
-        </p>
+        <div class="screenshot-rack">
+          <img src="varnishcalc-hero.png" alt="VarnishCalc Interface" />
+          <img src="varnishcalc-results.png" alt="Analytics View" />
+          <img src="varnishcalc-selection.png" alt="Material Database" />
+        </div>
       </div>
     </section>
 
     <section id="podcast">
-      <div class="card sectionCard">
-        <h2>Meditation Podcast</h2>
-        <p>
-          Together with the ashram, we created a small meditation podcast.
-          It’s a simple, calm format — guided meditations and music — meant to be practical,
-          grounded, and easy to return to.
-        </p>
-
-        <div class="project">
-          <div>
-            <p>
-              <b>Origin:</b> Karauli Shankar Mahadev Dham<br/>
-              <b>Format:</b> Short guided meditations and music sessions<br/>
-              <b>Focus:</b> Clarity, intention, and inner balance — without unnecessary complexity
-            </p>
-
-            <div class="tagRow">
-              <span class="tag">meditation</span>
-              <span class="tag">audio</span>
-              <span class="tag">simplicity</span>
-              <span class="tag">practice</span>
-            </div>
-
-            <div class="ctaRow" style="margin-top:12px;">
-              <a class="btn" href="https://kocandrle69.github.io/meditace-podcast/" target="_blank" rel="noopener">
-                Open podcast
-              </a>
-            </div>
-          </div>
-
-          <div class="shot">
-            <img src="podcast-screenshot.png" alt="Meditation podcast screenshot" />
-          </div>
+      <div class="grid-2">
+        <div class="card" style="display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center">
+          <h2>Balance</h2>
+          <p>Kde se potkává technická preciznost s klidem mysli. Karauli Shankar Mahadev Dham jako místo pro reset perspektivy.</p>
+          <a href="https://kocandrle69.github.io/meditace-podcast/" class="btn btn-secondary">Poslechnout podcast</a>
+        </div>
+        <div class="card" style="background: linear-gradient(135deg, rgba(0,122,255,0.1), rgba(167,139,250,0.1));">
+           <h3 style="margin-top:0">Meditation Podcast</h3>
+           <p>Audio projekt zaměřený na praktické techniky ztišení. Žádná esoterika, jen funkční metody pro mentální hygienu v rychlém světě.</p>
+           <div style="margin-top:20px; opacity:0.6; font-size:12px">SPOLUPRÁCE S ASHRAMEM</div>
         </div>
       </div>
     </section>
 
-    <section id="contact">
-      <div class="card sectionCard">
-        <h2>Contact</h2>
-        <p>
-          Best via email. 
-        </p>
-        <div class="ctaRow">
-          <a class="btn" href="mailto:kocandrle@email.cz">Email</a>
-          <a class="btn" href="https://www.linkedin.com/in/jan-kocandrle-52745832/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn" href="https://www.facebook.com/kocandrle/" target="_blank" rel="noopener">Facebook</a>
+    <section id="contact" style="text-align:center">
+        <h2>Navázat kontakt</h2>
+        <p class="muted">Preferuji věcnou komunikaci přes LinkedIn nebo Email.</p>
+        <div style="margin-top:32px; display:flex; justify-content:center; gap:16px; flex-wrap:wrap">
+            <a href="https://www.linkedin.com/in/jan-kocandrle-52745832/" class="card" style="padding:20px 40px; text-decoration:none">LinkedIn</a>
+            <a href="mailto:kocandrle@email.cz" class="card" style="padding:20px 40px; text-decoration:none">Email</a>
         </div>
-      </div>
     </section>
 
     <footer>
-      <div>Built simply. Thinking deeply.</div>
-      <div class="icons">
-        <a class="icon" href="#top" aria-label="Top">↑</a>
-      </div>
+      <div>© 2024 Jan Kočandrle — Process Engineering & Development</div>
+      <div>Built with Precision & Blur</div>
     </footer>
   </div>
 </body>
