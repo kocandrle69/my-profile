@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Jan Kočandrle | Engineering & Life Balance</title>
+  <title>Jan Kočandrle | Inženýrství & Rovnováha</title>
 
   <style>
     :root {
@@ -12,55 +12,52 @@
       --accent-2: #7c3aed; 
       --accent-3: #0ea5e9; 
       --text: #ffffff;
-      --glass-bg: rgba(255, 255, 255, 0.03);
-      --glass-border: rgba(255, 255, 255, 0.1);
+      --glass-bg: rgba(255, 255, 255, 0.035);
+      --glass-border: rgba(255, 255, 255, 0.08);
     }
 
     * { box-sizing: border-box; }
     body, html {
       margin: 0; padding: 0; width: 100%; min-height: 100vh;
       background-color: var(--bg-dark);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
       color: var(--text); overflow-x: hidden; scroll-behavior: smooth;
     }
 
-    /* --- OŽIVENÉ ORBY V POZADÍ --- */
+    /* --- DYNAMICKÉ POZADÍ --- */
     .background-wrapper {
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
     }
     .orb {
-      position: absolute; border-radius: 50%; filter: blur(120px);
-      opacity: 0.5; will-change: transform; animation: float 20s infinite ease-in-out;
+      position: absolute; border-radius: 50%; filter: blur(100px);
+      opacity: 0.45; will-change: transform; animation: float 25s infinite ease-in-out;
     }
-    .orb-1 { width: 50vw; height: 50vw; background: var(--accent-1); top: -10%; left: -5%; }
-    .orb-2 { width: 60vw; height: 60vw; background: var(--accent-2); bottom: -10%; right: -5%; animation-delay: -5s; }
-    .orb-3 { width: 40vw; height: 40vw; background: var(--accent-3); top: 30%; left: 20%; opacity: 0.3; }
+    .orb-1 { width: 45vw; height: 45vw; background: var(--accent-1); top: -10%; left: -5%; }
+    .orb-2 { width: 55vw; height: 55vw; background: var(--accent-2); bottom: -10%; right: -5%; animation-delay: -5s; }
+    .orb-3 { width: 35vw; height: 35vw; background: var(--accent-3); top: 30%; left: 20%; opacity: 0.3; }
+    .orb-4 { width: 30vw; height: 30vw; background: #f43f5e; bottom: 20%; left: 10%; opacity: 0.15; animation-duration: 35s; }
 
     @keyframes float {
       0%, 100% { transform: translate(0, 0) scale(1); }
-      33% { transform: translate(8%, 12%) scale(1.1); }
-      66% { transform: translate(-4%, 18%) scale(0.9); }
+      33% { transform: translate(8%, 10%) scale(1.05); }
+      66% { transform: translate(-4%, 15%) scale(0.95); }
     }
 
-    .wrap { position: relative; z-index: 10; max-width: 1200px; margin: 0 auto; padding: 20px 24px 80px; }
+    .wrap { position: relative; z-index: 10; max-width: 1100px; margin: 0 auto; padding: 20px 24px 80px; }
 
     /* --- NAVIGACE --- */
     .nav {
       position: sticky; top: 20px; z-index: 1000;
       display: flex; justify-content: space-between; align-items: center;
       padding: 12px 24px; background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
       border: 1px solid var(--glass-border); border-radius: 100px; margin-bottom: 40px;
     }
     .nav-links a { color: #fff; text-decoration: none; font-size: 14px; opacity: 0.6; margin-left: 20px; transition: 0.3s; }
     .nav-links a:hover { opacity: 1; }
 
-    /* --- BENTO GRID LAYOUT --- */
-    .bento-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 20px;
-    }
+    /* --- BENTO GRID --- */
+    .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
 
     .glass-card {
       position: relative; background: var(--glass-bg);
@@ -69,9 +66,8 @@
       overflow: hidden; display: flex; flex-direction: column;
       transition: transform 0.4s ease, border-color 0.3s ease;
     }
-    .glass-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.2); }
+    .glass-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.18); }
 
-    /* Velikosti karet */
     .col-12 { grid-column: span 12; }
     .col-8 { grid-column: span 8; }
     .col-4 { grid-column: span 4; }
@@ -82,30 +78,32 @@
     /* --- HERO --- */
     .hero-content { display: flex; align-items: center; gap: 40px; }
     .hero-text { flex: 1; }
-    .hero-img { width: 40%; border-radius: 24px; object-fit: cover; }
+    .hero-img-box { width: 45%; border-radius: 24px; overflow: hidden; border: 1px solid var(--glass-border); }
+    .hero-img { width: 100%; display: block; }
 
-    h1 { font-size: clamp(32px, 5vw, 54px); font-weight: 800; line-height: 1.1; margin: 0 0 20px; letter-spacing: -1.5px; }
-    h2 { font-size: 28px; margin: 0 0 15px; letter-spacing: -0.5px; }
-    p { font-size: 17px; line-height: 1.6; color: rgba(255, 255, 255, 0.7); margin-bottom: 20px; }
+    h1 { font-size: clamp(34px, 5vw, 52px); font-weight: 800; line-height: 1.1; margin: 0 0 20px; letter-spacing: -1.8px; }
+    h2 { font-size: 28px; margin: 0 0 16px; letter-spacing: -0.6px; font-weight: 700; }
+    p { font-size: 17px; line-height: 1.6; color: rgba(255, 255, 255, 0.75); margin-bottom: 18px; font-weight: 400; }
 
     .btn {
-      display: inline-block; padding: 14px 28px; background: #fff; color: #000;
+      display: inline-block; padding: 14px 30px; background: #fff; color: #000;
       border-radius: 14px; text-decoration: none; font-weight: 600; transition: 0.2s;
     }
+    .btn:hover { background: #e0e0e0; transform: scale(1.02); }
 
-    /* --- IMAGE STYLES --- */
+    /* --- IMAGES --- */
     .full-img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .top-focus { object-position: center 15%; } /* Klíčové pro fotku s Danem */
+    .top-focus { object-position: center 10%; }
 
     .tag {
-      font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px;
-      color: var(--accent-3); font-weight: 700; margin-bottom: 10px; display: block;
+      font-size: 11px; text-transform: uppercase; letter-spacing: 1.8px;
+      color: var(--accent-3); font-weight: 700; margin-bottom: 12px; display: block;
     }
 
     @media (max-width: 900px) {
       .col-8, .col-4, .col-6 { grid-column: span 12; }
-      .hero-content { flex-direction: column; text-align: center; }
-      .hero-img { width: 100%; height: 350px; }
+      .hero-content { flex-direction: column; }
+      .hero-img-box { width: 100%; }
     }
   </style>
 </head>
@@ -115,15 +113,16 @@
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
   </div>
 
   <div class="wrap">
     <nav class="nav">
-      <div style="font-weight:800;">Jan Kočandrle</div>
+      <div style="font-weight:800; font-size: 18px; letter-spacing: -0.5px;">Jan Kočandrle</div>
       <div class="nav-links">
-        <a href="#varnish">Práce</a>
-        <a href="#rodina">Rodina</a>
-        <a href="#balance">Balance</a>
+        <a href="#varnish">VarnishCalc</a>
+        <a href="#balance">Rovnováha</a>
+        <a href="#meditace">Podcast</a>
         <a href="mailto:kocandrle@email.cz">Kontakt</a>
       </div>
     </nav>
@@ -133,68 +132,80 @@
       <header class="glass-card col-12">
         <div class="hero-content card-padding">
           <div class="hero-text">
-            <h1>Inženýrská mysl.<br/><span style="color:var(--accent-3)">Rodinné srdce.</span></h1>
-            <p>Můj svět tvoří precizní procesy lakování, ale mým největším motorem je <b>Life Balance</b>. Po práci v globálním supportu je pro mě prioritou rodina a naše tříletá dcera.</p>
-            <a href="mailto:kocandrle@email.cz" class="btn">Napište mi</a>
+            <h1>Inženýrská mysl.<br/><span style="color:var(--accent-1)">Rodina na prvním místě.</span></h1>
+            <p>V práci se věnuji podpoře závodů v oblasti potisku a lakování v rámci globálního supportu. Pomáhám řešit procesní otázky, hledat příčiny problémů a nastavovat systémová řešení.</p>
+            <p>Mým největším motorem je ale Life Balance. Po práci je pro mě prioritou rodina a naše tříletá dcera, společné vycházky do přírody a meditační praxe.</p>
+            <a href="mailto:kocandrle@email.cz" class="btn">Kontaktujte mě</a>
           </div>
-          <img src="family-hero.jpg" alt="Rodina" class="hero-img">
+          <div class="hero-img-box">
+            <img src="family-hero.jpg" alt="Rodina" class="hero-img">
+          </div>
         </div>
       </header>
 
-      <section id="varnish" class="glass-card col-4 card-padding">
-        <span class="tag">Engineering Tool</span>
+      <section id="varnish" class="glass-card col-5 card-padding">
+        <span class="tag">Inženýrský nástroj</span>
         <h2>VarnishCalc</h2>
-        <p>Profesionální kalkulátor pro vnitřní lakování hliníkových tub. Převádí procesní vstupy na přesná fakta.</p>
-        <div style="margin-top:auto; font-size:13px; opacity:0.5;">v 2.4 | Python based</div>
+        <p>Aplikace vznikla z reálné potřeby zpřesnit rozhodování ve výrobě hliníkových obalů. Na základě procesních vstupů počítá nános i tloušťku filmu.</p>
+        <p>Cílem je jednoduchost a opakovatelnost — nástroj pro praxi, ne jen pro tabulky.</p>
+        <div style="margin-top:auto; font-size:12px; opacity:0.4; letter-spacing: 0.5px;">Swift • Verze 2.4 • Průmyslové prostředí</div>
       </section>
 
-      <div class="glass-card col-8">
-        <div style="display:flex; height:100%;">
-          <img src="varnishcalc-hero.png" class="full-img" style="width:50%; object-fit: cover; border-right: 1px solid var(--glass-border);">
-          <img src="varnishcalc-results.png" class="full-img" style="width:50%; object-fit: cover;">
+      <div class="glass-card col-7">
+        <div style="display:flex; height:100%; background: #000;">
+          <img src="varnishcalc-hero.png" class="full-img" style="width:50%; object-fit: cover; opacity: 0.9;">
+          <img src="varnishcalc-results.png" class="full-img" style="width:50%; object-fit: cover; opacity: 0.9; border-left: 1px solid var(--glass-border);">
         </div>
-      </div>
-
-      <div class="glass-card col-4">
-        <img src="ashram-dan.jpg" class="full-img top-focus" alt="Já a Dan">
       </div>
 
       <section id="balance" class="glass-card col-8 card-padding">
-        <span class="tag">Mental Health</span>
+        <span class="tag">Rovnováha</span>
         <h2>Karauli Shankar Mahadev Dham</h2>
-        <p>Brzy ráno a večer se věnuji meditacím, které mi dávají sílu pro náročnou práci v globálním inženýrství. Je to místo pro reset perspektivy.</p>
-        <div style="display:flex; gap:10px; margin-top:10px;">
-          <img src="ashram-path.jpg" style="width:120px; height:80px; border-radius:12px; object-fit:cover;">
-          <img src="ashram-meditation.jpg" style="width:120px; height:80px; border-radius:12px; object-fit:cover;">
+        <p>Místo, kam se pravidelně vracím pro perspektivu a jednoduchost. Ráno a večer si nechávám prostor pro tichou praxi — ne jako únik, ale jako vědomý reset.</p>
+        <p>V prostředí globálního inženýrství mi tato rovnováha pomáhá zůstat soustředěný, stabilní a rozhodovat se s nadhledem.</p>
+        <div style="display:flex; gap:12px; margin-top:15px;">
+          <div style="width:80px; height:60px; border-radius:12px; overflow:hidden; border:1px solid var(--glass-border);">
+            <img src="ashram-path.jpg" class="full-img">
+          </div>
+          <div style="width:80px; height:60px; border-radius:12px; overflow:hidden; border:1px solid var(--glass-border);">
+            <img src="ashram-meditation.jpg" class="full-img">
+          </div>
         </div>
       </section>
 
-      <div class="glass-card col-6">
-        <img src="ashram-family.jpeg" class="full-img" alt="Rodina v ašramu">
+      <div class="glass-card col-4">
+        <img src="ashram-dan.jpg" class="full-img top-focus" alt="Jan a Dan">
       </div>
 
-      <div class="glass-card col-6">
-        <img src="ashram-wife.jpeg" class="full-img" alt="Manželka v ašramu">
+      <div class="glass-card col-6" style="height: 300px;">
+        <img src="ashram-family.jpg" class="full-img top-focus" alt="Rodina v ašramu">
       </div>
 
-      <section id="meditace" class="glass-card col-12 card-padding" style="background: linear-gradient(135deg, rgba(167,139,250,0.1), rgba(255,255,255,0.02)); text-align:center;">
-        <span class="tag">Audio Project</span>
-        <h2>Meditační Podcast</h2>
-        <p style="max-width:600px; margin: 0 auto 20px;">Praktický průvodce ztišením. Most mezi technickým přístupem a spirituálním hledáním.</p>
-        <img src="podcast-screenshot.png" style="max-width:400px; width:100%; border-radius:16px; margin-bottom:20px; border: 1px solid var(--glass-border);">
+      <div class="glass-card col-6" style="height: 300px;">
+        <img src="ashram-wife.jpg" class="full-img top-focus" alt="Manželka v ašramu">
+      </div>
+
+      <section id="meditace" class="glass-card col-12 card-padding" style="background: linear-gradient(160deg, rgba(124,58,237,0.1) 0%, rgba(255,255,255,0) 100%); text-align:center;">
+        <span class="tag">Audio projekt</span>
+        <h2>Meditační podcast</h2>
+        <p style="max-width:700px; margin: 0 auto 25px;">Autentické nahrávky společných meditací vedených gurudevem. Podcast umožňuje znovu se napojit na atmosféru místa a prohloubit osobní praxi i v domácím prostředí.</p>
+        <div style="display:inline-block; position:relative; margin-bottom: 25px;">
+           <img src="podcast-screenshot.png" style="max-width:420px; width:100%; border-radius:20px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 1px solid var(--glass-border);">
+        </div>
         <br>
-        <a href="https://kocandrle69.github.io/meditace-podcast/" target="_blank" class="btn" style="background:var(--accent-2); color:#fff;">Otevřít podcast</a>
+        <a href="https://kocandrle69.github.io/meditace-podcast/" target="_blank" class="btn" style="background:var(--accent-2); color:#fff; border:none;">Otevřít podcast</a>
       </section>
 
     </div>
 
-    <footer style="text-align: center; margin-top: 60px; opacity: 0.4; font-size: 13px;">
-      Jan Kočandrle — Built with Precision & Balance.
+    <footer style="text-align: center; margin-top: 80px; padding-bottom: 20px;">
+      <div style="font-weight: 600; opacity: 0.8; margin-bottom: 8px;">Jan Kočandrle — Inženýrství, rodina, rovnováha.</div>
+      <div style="font-size: 12px; opacity: 0.4;">© 2026 • Postaveno na principech přehlednosti</div>
     </footer>
   </div>
 
   <script>
-    // Skript pro interaktivní odlesk na kartách
+    // Interaktivní odlesk (Shine effect)
     document.querySelectorAll('.glass-card').forEach(card => {
       card.addEventListener('mousemove', e => {
         const rect = card.getBoundingClientRect();
