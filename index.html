@@ -7,14 +7,14 @@
 
   <style>
     :root {
-      --bg-dark: #0a0d12;
-      --accent-1: #007AFF; /* Apple Blue */
-      --accent-2: #a78bfa; /* Soft Purple */
-      --accent-3: #5AC8FA; /* Sky Blue */
+      /* Světlejší tmavý základ, aby to nebyla "černočerná" tma */
+      --bg-dark: #0f141a; 
+      --accent-1: #007AFF; 
+      --accent-2: #7c3aed; 
+      --accent-3: #0ea5e9; 
       --text: #ffffff;
       --glass-bg: rgba(255, 255, 255, 0.04);
       --glass-border: rgba(255, 255, 255, 0.12);
-      --card-radius: 28px;
     }
 
     * { box-sizing: border-box; }
@@ -25,113 +25,92 @@
       width: 100%;
       min-height: 100vh;
       background-color: var(--bg-dark);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+      /* Záložní gradient, pokud orby selžou */
+      background: radial-gradient(circle at 50% 50%, #1a2330 0%, #0a0d12 100%);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
       color: var(--text);
       overflow-x: hidden;
-      scroll-behavior: smooth;
     }
 
-    /* --- ANIMOVANÉ POZADÍ (ORBY) --- */
+    /* --- OPRAVENÉ ORBY --- */
     .background-wrapper {
       position: fixed;
       inset: 0;
-      z-index: -1;
-      background: radial-gradient(circle at center, #161b22 0%, #0a0d12 100%);
+      z-index: 0; /* Jsou nad body, ale pod obsahem */
+      pointer-events: none;
       overflow: hidden;
     }
 
     .orb {
       position: absolute;
       border-radius: 50%;
-      filter: blur(100px);
-      opacity: 0.5;
-      animation: float 20s infinite ease-in-out;
+      /* Změna: kombinace opacity a silnějšího bluru */
+      filter: blur(80px);
+      opacity: 0.6;
+      will-change: transform; /* Optimalizace pro plynulost */
+      animation: float 25s infinite ease-in-out;
     }
 
     .orb-1 {
-      width: 600px; height: 600px;
+      width: 40vw; height: 40vw;
       background: var(--accent-1);
-      top: -10%; left: -10%;
+      top: -10%; left: -5%;
+      animation-duration: 20s;
     }
 
     .orb-2 {
-      width: 700px; height: 700px;
+      width: 50vw; height: 50vw;
       background: var(--accent-2);
-      bottom: -15%; right: -5%;
-      animation-duration: 25s;
+      bottom: -10%; right: -5%;
+      animation-duration: 30s;
       animation-delay: -5s;
     }
 
     .orb-3 {
-      width: 500px; height: 500px;
+      width: 30vw; height: 30vw;
       background: var(--accent-3);
-      top: 30%; left: 50%;
+      top: 40%; left: 30%;
       animation-duration: 22s;
-      animation-delay: -10s;
       opacity: 0.3;
     }
 
     @keyframes float {
       0%, 100% { transform: translate(0, 0) scale(1); }
-      33% { transform: translate(5vw, 10vh) scale(1.1); }
-      66% { transform: translate(-3vw, 15vh) scale(0.95); }
+      33% { transform: translate(10%, 10%) scale(1.1); }
+      66% { transform: translate(-5%, 15%) scale(0.9); }
     }
 
     /* --- LAYOUT --- */
     .wrap {
+      position: relative;
+      z-index: 10; /* Musí být nad orby */
       max-width: 1100px;
       margin: 0 auto;
-      padding: 40px 24px 100px;
-      position: relative;
+      padding: 40px 24px;
     }
 
-    /* --- NAVIGACE --- */
-    .nav {
-      position: sticky;
-      top: 20px;
-      z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 28px;
-      background: rgba(255, 255, 255, 0.06);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: 100px;
-      margin-bottom: 60px;
-    }
-
-    .nav-brand { font-weight: 800; font-size: 19px; letter-spacing: -0.5px; }
-    .nav-links { display: flex; gap: 20px; }
-    .nav-links a { 
-      color: #fff; text-decoration: none; font-size: 14px; 
-      font-weight: 500; opacity: 0.6; transition: 0.3s;
-    }
-    .nav-links a:hover { opacity: 1; }
-
-    /* --- SKLENĚNÉ KARTY S ODLESKEM --- */
+    /* --- SKLENĚNÉ KARTY --- */
     .glass-card {
       position: relative;
       background: var(--glass-bg);
-      backdrop-filter: blur(35px);
-      -webkit-backdrop-filter: blur(35px);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
       border: 1px solid var(--glass-border);
-      border-radius: var(--card-radius);
-      padding: 40px;
+      border-radius: 30px;
+      padding: 45px;
       margin-bottom: 24px;
-      overflow: hidden; /* Pro ořez odlesku */
-      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      overflow: hidden;
+      transition: transform 0.4s ease, border-color 0.3s ease;
     }
 
-    /* Efekt odlesku (shine) */
+    /* Interaktivní záře pod myší */
     .glass-card::before {
       content: "";
       position: absolute;
       inset: 0;
       background: radial-gradient(
-        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-        rgba(255, 255, 255, 0.08), 
+        800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+        rgba(255, 255, 255, 0.1), 
         transparent 40%
       );
       z-index: 1;
@@ -141,57 +120,54 @@
     }
 
     .glass-card:hover::before { opacity: 1; }
-    .glass-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.2); }
+    .glass-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.25); }
 
     .card-content { position: relative; z-index: 2; }
 
     /* --- TYPOGRAFIE --- */
     h1 {
-      font-size: clamp(42px, 8vw, 72px);
+      font-size: clamp(38px, 7vw, 68px);
       font-weight: 800;
+      letter-spacing: -2px;
       line-height: 1.1;
-      letter-spacing: -2.5px;
       margin: 0 0 20px;
-      background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.6) 100%);
+      background: linear-gradient(to bottom, #fff, rgba(255,255,255,0.7));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    h2 { font-size: 32px; letter-spacing: -1px; margin-top: 0; }
-    p { font-size: 18px; line-height: 1.6; color: rgba(255, 255, 255, 0.7); font-weight: 400; }
-
-    /* --- PRVKY --- */
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-
-    .btn {
-      display: inline-flex;
+    .nav {
+      position: sticky;
+      top: 20px;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      padding: 14px 32px;
+      padding: 14px 28px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 100px;
+      margin-bottom: 50px;
+    }
+
+    .nav a { color: #fff; text-decoration: none; font-size: 14px; font-weight: 500; opacity: 0.6; }
+    .btn {
+      display: inline-block;
+      padding: 14px 30px;
       background: #fff;
       color: #000;
       border-radius: 14px;
       text-decoration: none;
       font-weight: 600;
-      font-size: 16px;
       transition: 0.2s;
     }
-    .btn:hover { transform: scale(1.03); background: #f0f0f0; }
 
-    .tag {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      background: rgba(255,255,255,0.1);
-      padding: 4px 10px;
-      border-radius: 6px;
-      margin-bottom: 12px;
-      display: inline-block;
-    }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 
-    /* --- RESPONSIVE --- */
     @media (max-width: 800px) {
       .grid { grid-template-columns: 1fr; }
-      h1 { font-size: 48px; }
       .nav-links { display: none; }
     }
   </style>
@@ -206,79 +182,50 @@
 
   <div class="wrap">
     <nav class="nav">
-      <div class="nav-brand">Jan Kočandrle</div>
-      <div class="nav-links">
-        <a href="#about">O mně</a>
-        <a href="#projects">Projekty</a>
-        <a href="#contact">Kontakt</a>
+      <div style="font-weight:800; font-size: 18px;">Jan Kočandrle</div>
+      <div class="nav-links" style="display:flex; gap:25px;">
+        <a href="#projekty">Projekty</a>
+        <a href="#kontakt">Kontakt</a>
       </div>
     </nav>
 
     <header class="glass-card">
       <div class="card-content">
-        <span class="tag">Process & Strategy</span>
-        <h1>Preciznost v každém mikrometru.</h1>
-        <p>Expert na globální procesy lakování a mytí hliníkových tub. Propojuji hlubokou analýzu dat s praktickým engineeringem pro nalezení root cause a optimalizaci výroby.</p>
-        <div style="margin-top: 30px;">
-          <a href="#projects" class="btn">Zobrazit projekty</a>
-        </div>
+        <h1>Analýza. Procesy.<br/>Budoucnost.</h1>
+        <p>Expert na globální podporu vnitřního lakování a potisku hliníkových tub. Hledám preciznost tam, kde jiní vidí jen data.</p>
+        <a href="#projekty" class="btn">Zobrazit práci</a>
       </div>
     </header>
 
     <div class="grid">
-      <section id="projects" class="glass-card">
+      <section id="projekty" class="glass-card">
         <div class="card-content">
-          <span class="tag">Software Tool</span>
-          <h2>VarnishCalc</h2>
-          <p>Pokročilý kalkulátor pro vnitřní lakování. Převádí komplexní parametry linky na přesné hodnoty nánosu laku (µm, g/m²). Eliminuje chyby a šetří materiál.</p>
+          <h2 style="margin-top:0">VarnishCalc</h2>
+          <p>Kalkulátor pro přesné výpočty lakovacích parametrů. Efektivita podložená matematikou.</p>
         </div>
       </section>
 
       <section class="glass-card">
         <div class="card-content">
-          <span class="tag">Mindset</span>
-          <h2>Mindset & Klid</h2>
-          <p>Technický svět vyžaduje čistou hlavu. Spolupracuji na meditačním podcastu ashramu Karauli Shankar, který přináší praktické zklidnění do rychlé doby.</p>
+          <h2 style="margin-top:0">Klid & Mindset</h2>
+          <p>Meditace a technologický svět v rovnováze. Praktické zklidnění pro engineeringovou mysl.</p>
         </div>
       </section>
     </div>
 
-    <section class="glass-card" id="about">
-      <div class="card-content">
-        <h2>Globální podpora & Technologie</h2>
-        <p>Mým úkolem je hloubková analýza procesů lakování, vnitřního lakování a potisku. Věřím v konfrontaci dostupných informací a hledání řešení tam, kde ostatní vidí jen slepou uličku.</p>
-        <div style="display:flex; gap:15px; margin-top:20px; flex-wrap:wrap;">
-          <div style="background:rgba(255,255,255,0.05); padding:15px; border-radius:15px; flex:1; min-width:150px;">
-            <b style="display:block; font-size:20px; color:var(--accent-3);">µm</b>
-            <span style="font-size:12px; opacity:0.6;">Precizní tloušťka</span>
-          </div>
-          <div style="background:rgba(255,255,255,0.05); padding:15px; border-radius:15px; flex:1; min-width:150px;">
-            <b style="display:block; font-size:20px; color:var(--accent-3);">Global</b>
-            <span style="font-size:12px; opacity:0.6;">Podpora výrobních míst</span>
-          </div>
-          <div style="background:rgba(255,255,255,0.05); padding:15px; border-radius:15px; flex:1; min-width:150px;">
-            <b style="display:block; font-size:20px; color:var(--accent-3);">Data</b>
-            <span style="font-size:12px; opacity:0.6;">Důkaz místo domněnek</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer id="contact" style="text-align: center; margin-top: 40px;">
-      <p style="margin-bottom: 20px;">Máte zájem o hlubší analýzu nebo spolupráci?</p>
-      <a href="mailto:kocandrle@email.cz" class="btn" style="background:transparent; border:1px solid #fff; color:#fff;">Napište mi</a>
-      <div style="margin-top:40px; opacity:0.3; font-size:12px;">© 2026 Jan Kočandrle. Built for clarity.</div>
+    <footer id="kontakt" style="text-align: center; margin-top: 60px; padding-bottom: 40px;">
+      <p style="opacity:0.6">Máte zájem o konzultaci nebo analýzu?</p>
+      <a href="mailto:kocandrle@email.cz" style="color:#fff; font-weight:bold; font-size:20px;">kocandrle@email.cz</a>
     </footer>
   </div>
 
   <script>
-    // Sledování pohybu myši pro interaktivní odlesk karet
+    // Skript pro interaktivní odlesk karet
     document.querySelectorAll('.glass-card').forEach(card => {
       card.addEventListener('mousemove', e => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        
         card.style.setProperty('--mouse-x', `${x}px`);
         card.style.setProperty('--mouse-y', `${y}px`);
       });
