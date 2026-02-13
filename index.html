@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="cs">
 <head>
@@ -8,13 +7,11 @@
 
   <style>
     :root {
-      /* Světlejší tmavý základ pro hloubku */
       --bg-dark: #0f141a; 
       --accent-1: #007AFF; 
       --accent-2: #6366f1; 
       --accent-3: #5AC8FA; 
       --text: #ffffff;
-      /* Skleněné karty - více průhledné a svítivé */
       --glass-bg: rgba(255, 255, 255, 0.06);
       --glass-border: rgba(255, 255, 255, 0.12);
     }
@@ -27,39 +24,18 @@
       color: var(--text); overflow-x: hidden; scroll-behavior: smooth;
     }
 
-    /* --- ROZSVÍCENÉ POZADÍ A ORBY --- */
+    /* --- BACKGROUND ORBS --- */
     .background-wrapper {
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
       background: radial-gradient(circle at 50% 50%, #1a2330 0%, #0f141a 100%);
     }
-
     .orb {
       position: absolute; border-radius: 50%; filter: blur(100px);
-      opacity: 0.55; 
-      will-change: transform; animation: float 22s infinite ease-in-out;
+      opacity: 0.55; will-change: transform; animation: float 22s infinite ease-in-out;
     }
-
-    /* Orb 1: Čistá Apple modrá */
-    .orb-1 { 
-      width: 50vw; height: 50vw; 
-      background: radial-gradient(circle, var(--accent-1) 0%, transparent 70%); 
-      top: -10%; left: -5%; 
-    }
-
-    /* Orb 2: Indigo / Fialová pro hloubku */
-    .orb-2 { 
-      width: 60vw; height: 60vw; 
-      background: radial-gradient(circle, var(--accent-2) 0%, transparent 70%); 
-      bottom: -10%; right: -5%; 
-      animation-delay: -5s; 
-    }
-
-    /* Orb 3: Zlatavé světlo (východ slunce) - dává webu život */
-    .orb-3 { 
-      width: 40vw; height: 40vw; 
-      background: radial-gradient(circle, rgba(255,230,150,0.18) 0%, transparent 70%); 
-      top: 25%; left: 15%; 
-    }
+    .orb-1 { width: 50vw; height: 50vw; background: radial-gradient(circle, var(--accent-1) 0%, transparent 70%); top: -10%; left: -5%; }
+    .orb-2 { width: 60vw; height: 60vw; background: radial-gradient(circle, var(--accent-2) 0%, transparent 70%); bottom: -10%; right: -5%; animation-delay: -5s; }
+    .orb-3 { width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(255,230,150,0.18) 0%, transparent 70%); top: 25%; left: 15%; }
 
     @keyframes float {
       0%, 100% { transform: translate(0, 0) scale(1); }
@@ -69,7 +45,7 @@
 
     .wrap { position: relative; z-index: 10; max-width: 1200px; margin: 0 auto; padding: 20px 24px 100px; }
 
-    /* --- NAVIGACE --- */
+    /* --- NAV & LANG SWITCHER --- */
     .nav {
       position: sticky; top: 20px; z-index: 1000;
       display: flex; justify-content: space-between; align-items: center;
@@ -78,34 +54,27 @@
       border: 1px solid var(--glass-border); border-radius: 100px; margin-bottom: 40px;
     }
     .nav-brand { font-weight: 800; font-size: 19px; letter-spacing: -0.5px; }
-    .nav-links a { color: #fff; text-decoration: none; font-size: 14px; opacity: 0.6; margin-left: 20px; transition: 0.3s; }
+    .nav-right { display: flex; align-items: center; gap: 25px; }
+    .nav-links { display: flex; gap: 20px; }
+    .nav-links a { color: #fff; text-decoration: none; font-size: 14px; opacity: 0.6; transition: 0.3s; }
     .nav-links a:hover { opacity: 1; }
 
-    /* --- BENTO GRID KONSTRUKCE --- */
-    .bento-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-auto-rows: minmax(100px, auto);
-      gap: 24px;
+    .lang-switch {
+      display: flex; background: rgba(255,255,255,0.1); border-radius: 50px; padding: 3px; border: 1px solid var(--glass-border);
     }
+    .lang-btn {
+      padding: 4px 10px; border-radius: 50px; font-size: 11px; font-weight: 700; cursor: pointer; border: none; background: transparent; color: #fff; opacity: 0.4; transition: 0.3s;
+    }
+    .lang-btn.active { background: var(--accent-1); opacity: 1; }
 
+    /* --- BENTO GRID --- */
+    .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: minmax(100px, auto); gap: 24px; }
     .glass-card {
-      position: relative; background: var(--glass-bg);
-      backdrop-filter: blur(45px) saturate(170%); -webkit-backdrop-filter: blur(45px) saturate(170%);
-      border: 1px solid var(--glass-border); border-radius: 32px; /* Pořádně kulaté rohy */
-      overflow: hidden; display: flex; flex-direction: column;
-      transition: transform 0.4s ease, border-color 0.3s ease;
+      position: relative; background: var(--glass-bg); backdrop-filter: blur(45px) saturate(170%); -webkit-backdrop-filter: blur(45px) saturate(170%);
+      border: 1px solid var(--glass-border); border-radius: 32px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.4s ease, border-color 0.3s ease;
     }
     .glass-card:hover { transform: translateY(-6px); border-color: rgba(255,255,255,0.25); }
-
-    .col-12 { grid-column: span 12; }
-    .col-8 { grid-column: span 8; }
-    .col-7 { grid-column: span 7; }
-    .col-6 { grid-column: span 6; }
-    .col-5 { grid-column: span 5; }
-    .col-4 { grid-column: span 4; }
-    .row-2 { grid-row: span 2; }
-
+    .col-12 { grid-column: span 12; } .col-8 { grid-column: span 8; } .col-7 { grid-column: span 7; } .col-6 { grid-column: span 6; } .col-5 { grid-column: span 5; } .col-4 { grid-column: span 4; } .row-2 { grid-row: span 2; }
     .card-padding { padding: 45px; }
 
     /* --- HERO --- */
@@ -113,38 +82,31 @@
     .hero-text { flex: 1.2; }
     .hero-img-box { flex: 0.8; border-radius: 24px; overflow: hidden; border: 1px solid var(--glass-border); }
     .hero-img { width: 100%; display: block; }
-
     h1 { font-size: clamp(34px, 5vw, 54px); font-weight: 800; line-height: 1.05; margin: 0 0 20px; letter-spacing: -2.5px; }
     h2 { font-size: 30px; margin: 0 0 16px; letter-spacing: -0.8px; font-weight: 700; }
     p { font-size: 18px; line-height: 1.6; color: rgba(255, 255, 255, 0.7); margin-bottom: 20px; }
 
-    .highlight {
-  font-weight: 700;
-  color: var(--accent-1);
-}
-    
-    .btn {
-      display: inline-block; padding: 16px 32px; background: #fff; color: #000;
-      border-radius: 16px; text-decoration: none; font-weight: 600; transition: 0.2s;
-    }
+    .btn { display: inline-block; padding: 16px 32px; background: #fff; color: #000; border-radius: 16px; text-decoration: none; font-weight: 600; transition: 0.2s; border: none; cursor: pointer; }
+    .btn:hover { transform: scale(1.02); background: #f0f0f0; }
 
-    /* --- OBRÁZKY --- */
     .full-img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .top-focus { object-position: center 10%; } 
+    .tag { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-3); font-weight: 800; margin-bottom: 15px; display: block; }
 
-    .tag {
-      font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
-      color: var(--accent-3); font-weight: 800; margin-bottom: 15px; display: block;
-    }
+    /* Language hiding logic */
+    [lang="en"] { display: none; }
+    .lang-en [lang="cs"] { display: none; }
+    .lang-en [lang="en"] { display: block; }
 
     @media (max-width: 900px) {
       .col-12, .col-8, .col-7, .col-6, .col-5, .col-4 { grid-column: span 12; }
       .row-2 { grid-row: auto; height: 350px; }
       .hero-flex { flex-direction: column; text-align: center; }
+      .nav-links { display: none; }
     }
   </style>
 </head>
-<body>
+<body class="lang-cs">
 
   <div class="background-wrapper">
     <div class="orb orb-1"></div>
@@ -155,10 +117,16 @@
   <div class="wrap">
     <nav class="nav">
       <div class="nav-brand">Jan Kočandrle</div>
-      <div class="nav-links">
-        <a href="#varnish">Inženýrství</a>
-        <a href="#karauli">Rovnováha</a>
-        <a href="#meditace">Podcast</a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="#varnish"><span lang="cs">Inženýrství</span><span lang="en">Engineering</span></a>
+          <a href="#karauli"><span lang="cs">Rovnováha</span><span lang="en">Balance</span></a>
+          <a href="#meditace"><span lang="cs">Podcast</span><span lang="en">Podcast</span></a>
+        </div>
+        <div class="lang-switch">
+          <button class="lang-btn active" onclick="setLang('cs')">CS</button>
+          <button class="lang-btn" onclick="setLang('en')">EN</button>
+        </div>
       </div>
     </nav>
 
@@ -167,11 +135,24 @@
       <header class="glass-card col-12 card-padding">
         <div class="hero-flex">
           <div class="hero-text">
-            <h1>Inženýrská mysl.<br/><span style="color:var(--accent-1)">Rodina na prvním místě.</span></h1>
-            <p>V rámci globální podpory pomáhám závodům v oblasti potisku a lakování — od analýzy dat po systémová řešení, která skutečně zlepšují procesy. Zaměřuji se na příčiny, ne jen symptomy, a hledám řešení, která dávají dlouhodobý smysl.</p>
-            <p>Každý den začínám brzy ráno tichou meditací — ještě než se rodina probudí a začne každodenní kolotoč. Tento čas mi pomáhá vrátit se k jednoduchosti, k vědomému nadechnutí a k perspektivě, která přesahuje pracovní tlak i tempo světa kolem nás.</p>
-            <p>Nejdůležitější je pro mě rovnováha. Rodina, naše tříletá dcera, čas v přírodě a každodenní praxe mi připomínají, co je skutečně podstatné — a jak zůstat klidný i uprostřed náročných rozhodnutí.</p>
-            <p><strong>Life Balance</strong> pro mě není fráze. Je to způsob života.</p>
+            <h1 lang="cs">Inženýrská mysl.<br/><span style="color:var(--accent-1)">Rodina na prvním místě.</span></h1>
+            <h1 lang="en">Engineering Mind.<br/><span style="color:var(--accent-1)">Family First.</span></h1>
+            
+            <div lang="cs">
+              <p>V rámci globální podpory pomáhám závodům v oblasti potisku a lakování — od analýzy dat po systémová řešení, která skutečně zlepšují procesy. Zaměřuji se na příčiny, ne jen symptomy, a hledám řešení, která dávají dlouhodobý smysl.</p>
+              <p>Každý den začínám brzy ráno tichou meditací — ještě než se rodina probudí a začne každodenní kolotoč. Tento čas mi pomáhá vrátit se k jednoduchosti, k vědomému nadechnutí a k perspektivě, která přesahuje pracovní tlak i tempo světa kolem nás.</p>
+              <p>Nejdůležitější je pro mě rovnováha. Rodina, naše tříletá dcera, čas v přírodě a každodenní praxe mi připomínají, co je skutečně podstatné — a jak zůstat klidný i uprostřed náročných rozhodnutí.</p>
+              <p><strong>Life Balance</strong> pro mě není fráze. Je to způsob života.</p>
+            </div>
+            
+            <div lang="en">
+              <p>As part of global support, I assist manufacturing plants in the fields of printing and coating — from data analysis to systemic solutions that truly improve processes. I focus on causes, not just symptoms, and seek solutions that make long-term sense.</p>
+              <p>I start every day early in the morning with silent meditation — even before the family wakes up and the daily rush begins. This time helps me return to simplicity, mindful breathing, and a perspective that transcends work pressure and the pace of the world around us.</p>
+              <p>Balance is most important to me. Family, our three-year-old daughter, time in nature, and daily practice remind me of what is truly essential — and how to stay calm even in the midst of demanding decisions.</p>
+              <p><strong>Life Balance</strong> is not just a phrase for me. It is a way of life.</p>
+            </div>
+            
+            <a href="mailto:kocandrle@email.cz" class="btn"><span lang="cs">Kontaktujte mě</span><span lang="en">Contact Me</span></a>
           </div>
           <div class="hero-img-box">
             <img src="family-hero.jpg" alt="Rodina" class="hero-img">
@@ -180,12 +161,18 @@
       </header>
 
       <section id="varnish" class="glass-card col-5 card-padding">
-        <span class="tag">Inženýrský nástroj</span>
+        <span class="tag"><span lang="cs">Inženýrský nástroj</span><span lang="en">Engineering Tool</span></span>
         <h2>VarnishCalc</h2>
-        <p>VarnishCalc je aplikace, kterou jsem vytvořil z vlastní potřeby mít větší kontrolu nad aplikovanou vrstvou laku — jak během testování, tak při běžném procesním měření ve výrobě.</p>
-        <p>Aplikace převádí procesní vstupy na jasná a opakovatelná data — mokrou i suchou vrstvu, tloušťku filmu, plošnou hmotnost i celkovou spotřebu materiálu.</p>
-        <p>Cílem je jednoduchost, opakovatelnost a praktická použitelnost přímo ve výrobním prostředí.</p>
-        <div style="margin-top:auto; font-size:12px; opacity:0.5;">Swift • Verze 2.4 • Navrženo pro reálné výrobní prostředí</div>
+        <p lang="cs">VarnishCalc je aplikace, kterou jsem vytvořil z vlastní potřeby mít větší kontrolu nad aplikovanou vrstvou laku — jak během testování, tak při běžném procesním měření ve výrobě.</p>
+        <p lang="en">VarnishCalc is an application I created out of my own need for greater control over the applied coating layer — both during testing and during regular process measurement in production.</p>
+        
+        <p lang="cs">Aplikace převádí procesní vstupy na jasná a opakovatelná data — mokrou i suchou vrstvu, tloušťku filmu, plošnou hmotnost i celkovou spotřebu materiálu.</p>
+        <p lang="en">The application converts process inputs into clear and repeatable data — wet and dry layer, film thickness, coating weight, and total material consumption.</p>
+
+        <p lang="cs">Cílem je jednoduchost, opakovatelnost a praktická použitelnost přímo ve výrobním prostředí.</p>
+        <p lang="en">The goal is simplicity, repeatability, and practical usability directly in the manufacturing environment.</p>
+
+        <div style="margin-top:auto; font-size:12px; opacity:0.5;">Swift • v2.4</div>
       </section>
 
       <div class="glass-card col-7">
@@ -200,77 +187,80 @@
       </div>
 
       <section id="karauli" class="glass-card col-8 card-padding">
-        <span class="tag">Rovnováha</span>
+        <span class="tag"><span lang="cs">Rovnováha</span><span lang="en">Balance</span></span>
         <h2>Karauli Shankar Mahadev Dham</h2>
-        <p><strong>Karauli Shankar Mahadev Dham</strong> je místo, kam se pravidelně vracím pro perspektivu v době, která je čím dál rychlejší a neklidnější. Svět kolem nás je plný informací, očekávání, tlaku a neustálého pohybu. Je snadné ztratit směr — nebo alespoň vnitřní klid.</p>
-        <p>Toto místo mi připomíná, že stabilita nevzniká z vnější kontroly, ale z vnitřního ukotvení. Nejde jen o ticho nebo zpomalení. Jde o návrat k základním otázkám:
-        <br>- Co je skutečně důležité?
-        <br>- Jak žít tak, aby radost nebyla náhodná, ale vědomá?</p>
-        <p>Pravidelná meditace — doma i během pobytu v ašramu — není únikem před realitou. Je to způsob, jak realitu vnímat jasněji. Jak reagovat místo impulzivního reagování. Jak zůstat klidný i v prostředí, které klid nepodporuje.</p>
-        <p>V době nejistoty mi toto místo pomáhá připomínat jednoduchou věc: skutečné štěstí není otázkou okolností, ale kvality našeho vědomí. A tu je možné kultivovat každý den.</p>
+        <div lang="cs">
+          <p><strong>Karauli Shankar Mahadev Dham</strong> je místo, kam se pravidelně vracím pro perspektivu v době, která je čím dál rychlejší a neklidnější. Svět kolem nás je plný informací, očekávání, tlaku a neustálého pohybu. Je snadné ztratit směr — nebo alespoň vnitřní klid.</p>
+          <p>Toto místo mi připomíná, že stabilita nevzniká z vnější kontroly, ale z vnitřního ukotvení. Nejde jen o ticho nebo zpomalení. Jde o návrat k základním otázkám:</p>
+          <p>- Co je skutečně důležité?<br>- Jak žít tak, aby radost nebyla náhodná, ale vědomá?</p>
+          <p>Pravidelná meditace — doma i během pobytu v ašramu — není únikem před realitou. Je to způsob, jak realitu vnímat jasněji. Jak zůstat klidný i v prostředí, které klid nepodporuje.</p>
+          <p>V době nejistoty mi toto místo pomáhá připomínat jednoduchou věc: skutečné štěstí není otázkou okolností, ale kvality našeho vědomí. A tu je možné kultivovat každý den.</p>
+        </div>
+        <div lang="en">
+          <p><strong>Karauli Shankar Mahadev Dham</strong> is a place where I regularly return for perspective in an increasingly faster and more restless age. The world around us is full of information, expectations, pressure, and constant movement. It is easy to lose direction — or at least inner peace.</p>
+          <p>This place reminds me that stability does not arise from external control, but from internal anchoring. It's not just about silence or slowing down. It's about returning to fundamental questions:</p>
+          <p>- What is truly important?<br>- How to live so that joy is not accidental, but intentional?</p>
+          <p>Regular meditation — at home and during stays in the ashram — is not an escape from reality. It is a way to perceive reality more clearly. How to remain calm even in an environment that does not support peace.</p>
+          <p>In times of uncertainty, this place helps remind me of a simple thing: true happiness is not a matter of circumstances, but of the quality of our consciousness. And that can be cultivated every day.</p>
+        </div>
       </section>
 
       <div class="glass-card col-8" style="height: 380px;">
-        <img src="ashram-family.jpeg" class="full-img top-focus" alt="Rodina v ašramu">
+        <img src="ashram-family.jpeg" class="full-img top-focus" alt="Rodina">
       </div>
 
       <div class="glass-card col-6" style="height: 350px;">
-        <img src="ashram-wife.jpeg" class="full-img top-focus" alt="Manželka v ašramu">
+        <img src="ashram-wife.jpeg" class="full-img top-focus">
       </div>
-
       <div class="glass-card col-6" style="height: 350px; display: grid; grid-template-columns: 1fr 1fr;">
-        <img src="ashram-dan.jpg" class="full-img top-focus" style="border-right: 1px solid var(--glass-border);" alt="Dan">
-        <img src="ashram-meditation.jpg" class="full-img" alt="Meditace">
+        <img src="ashram-dan.jpg" class="full-img top-focus" style="border-right: 1px solid var(--glass-border);">
+        <img src="ashram-meditation.jpg" class="full-img">
       </div>
 
       <section id="meditace" class="glass-card col-12 card-padding" style="text-align:center; background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(255,255,255,0.02));">
-        <span class="tag">Audio projekt</span>
-        <h2>Meditační podcast</h2>
-        <p style="max-width:700px; margin: 0 auto 30px;">Autentické nahrávky meditací vedených gurudevem. Podcast umožňuje znovu se napojit na atmosféru místa a prohloubit osobní praxi i doma.</p>
-        
+        <span class="tag"><span lang="cs">Audio projekt</span><span lang="en">Audio Project</span></span>
+        <h2><span lang="cs">Meditační podcast</span><span lang="en">Meditation Podcast</span></h2>
+        <p lang="cs">Autentické nahrávky meditací vedených gurudevem. Podcast umožňuje znovu se napojit na atmosféru místa a prohloubit osobní praxi i doma.</p>
+        <p lang="en">Authentic recordings of meditations led by the Gurudev. The podcast allows you to reconnect with the atmosphere of the place even at home.</p>
         <div style="padding: 20px 0; display: flex; justify-content: center;">
           <img src="podcast-screenshot.png" style="max-width:380px; width:90%; border-radius:24px; border: 1px solid var(--glass-border); box-shadow: 0 30px 60px rgba(0,0,0,0.5);">
         </div>
-
         <div style="margin-top: 20px;">
-          <a href="https://kocandrle69.github.io/meditace-podcast/" target="_blank" class="btn" style="background:var(--accent-2); color:#fff; border:none;">Otevřít podcast</a>
+          <a href="https://kocandrle69.github.io/meditace-podcast/" target="_blank" class="btn" style="background:var(--accent-2); color:#fff; border:none;">
+            <span lang="cs">Otevřít podcast</span><span lang="en">Open Podcast</span>
+          </a>
         </div>
       </section>
 
     </div>
 
     <footer id="kontakt" style="text-align: center; margin-top: 80px; padding-bottom: 60px;">
-      
       <div style="margin-bottom: 25px; opacity: 0.5; display: flex; justify-content: center;">
         <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 20s-4-4.5-4-9c0-2 2-2 4-5 2 3 4 3 4 5 0 4.5-4 9-4 9z" />
-          <path d="M12 20c-2 0-6-1-6-5s3-7 6-8" />
-          <path d="M12 20c-4 0-8-2-8-6s2-4 4-4" />
-          <path d="M12 20c2 0 6-1 6-5s-3-7-6-8" />
-          <path d="M12 20c4 0 8-2 8-6s-2-4-4-4" />
-          <path d="M8 22h8" opacity="0.3"/>
+          <path d="M12 20c-2 0-6-1-6-5s3-7 6-8M12 20c-4 0-8-2-8-6s2-4 4-4M12 20c2 0 6-1 6-5s-3-7-6-8M12 20c4 0 8-2 8-6s-2-4-4-4" />
         </svg>
       </div>
-
-      <div style="font-weight: 600; opacity: 0.8; margin-bottom: 10px; font-size: 18px; letter-spacing: -0.5px;">
-        Jan Kočandrle
-      </div>
+      <div style="font-weight: 600; opacity: 0.8; margin-bottom: 10px; font-size: 18px; letter-spacing: -0.5px;">Jan Kočandrle</div>
       <div style="opacity: 0.6; font-size: 15px; margin-bottom: 30px;">
-        Inženýrství • Rodina • Rovnováha
+        <span lang="cs">Inženýrství • Rodina • Rovnováha</span>
+        <span lang="en">Engineering • Family • Balance</span>
       </div>
-      
       <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 40px;">
-        <a href="mailto:kocandrle@email.cz" class="btn" style="padding: 10px 20px; font-size: 14px; background: transparent; border: 1px solid var(--glass-border); color: #fff;">Email</a>
+        <a href="mailto:kocandrle@email.cz" class="btn" style="padding: 10px 20px; font-size: 14px;">Email</a>
         <a href="https://www.linkedin.com/in/jan-kocandrle-52745832/" target="_blank" class="btn" style="padding: 10px 20px; font-size: 14px; background: transparent; border: 1px solid var(--glass-border); color: #fff;">LinkedIn</a>
-      </div>
-
-      <div style="font-size: 12px; opacity: 0.3; letter-spacing: 1px;">
-        © 2026 • BUILT WITH PRECISION & BALANCE
       </div>
     </footer>
   </div>
 
   <script>
+    function setLang(lang) {
+      document.body.className = 'lang-' + lang;
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.lang-btn')).find(b => b.innerText === lang.toUpperCase());
+      if(activeBtn) activeBtn.classList.add('active');
+    }
+
     document.querySelectorAll('.glass-card').forEach(card => {
       card.addEventListener('mousemove', e => {
         const rect = card.getBoundingClientRect();
