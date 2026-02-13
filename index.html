@@ -28,36 +28,40 @@
     }
 
     /* --- FIXNÍ POZADÍ A ORBY --- */
-    /* --- UPRAVENÁ BAREVNOST ORBŮ --- */
+    /* --- ROZSVÍCENÉ POZADÍ --- */
     .background-wrapper {
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background: radial-gradient(circle at 50% 50%, #0d1117 0%, #07090c 100%);
+      /* Gradient místo černé plochy */
+      background: radial-gradient(circle at 50% 50%, #1a2330 0%, #12171f 100%);
     }
+
     .orb {
-      position: absolute; border-radius: 50%; filter: blur(120px);
-      opacity: 0.35; /* Mírně snížená celková opacita pro eleganci */
+      position: absolute; border-radius: 50%; filter: blur(100px);
+      /* Změna: Vyšší opacita pro větší "světlo" */
+      opacity: 0.6; 
       will-change: transform; animation: float 22s infinite ease-in-out;
     }
-    /* Jemná modrá vlevo nahoře */
+
+    /* Orb 1: Zářivá modrá */
     .orb-1 { 
-      width: 45vw; height: 45vw; 
-      background: linear-gradient(135deg, var(--accent-1), #003a75); 
-      top: -15%; left: -10%; 
-    }
-    /* Indigo/Fialová vpravo dole - dodává hloubku bez "modrého" přebití */
-    .orb-2 { 
       width: 55vw; height: 55vw; 
-      background: linear-gradient(135deg, #4f46e5, #2e1065); 
-      bottom: -15%; right: -10%; 
-      animation-delay: -5s; 
-      opacity: 0.25;
+      background: radial-gradient(circle, var(--accent-1) 0%, #003a75 70%); 
+      top: -10%; left: -10%; 
     }
-    /* Neutrální/Zlatavý nádech uprostřed - pro pocit světla a klidu */
+
+    /* Orb 2: Světlejší fialová/indigo */
+    .orb-2 { 
+      width: 65vw; height: 65vw; 
+      background: radial-gradient(circle, #6366f1 0%, #312e81 70%); 
+      bottom: -15%; right: -5%; 
+      animation-delay: -5s; 
+    }
+
+    /* Orb 3: Zlatavé "slunce" uprostřed pro vřelost */
     .orb-3 { 
-      width: 40vw; height: 40vw; 
-      background: radial-gradient(circle, rgba(255,215,0,0.15) 0%, transparent 70%); 
-      top: 25%; left: 20%; 
-      opacity: 0.15;
+      width: 45vw; height: 45vw; 
+      background: radial-gradient(circle, rgba(255,230,150,0.2) 0%, transparent 70%); 
+      top: 20%; left: 15%; 
     }
 
     @keyframes float {
@@ -89,11 +93,10 @@
     }
 
     .glass-card {
-      position: relative; background: var(--glass-bg);
-      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
-      border: 1px solid var(--glass-border); border-radius: 32px;
-      overflow: hidden; display: flex; flex-direction: column;
-      transition: transform 0.4s ease, border-color 0.3s ease;
+      background: var(--glass-bg);
+      backdrop-filter: blur(50px) saturate(160%);
+      -webkit-backdrop-filter: blur(50px) saturate(160%);
+      border: 1px solid var(--glass-border);
     }
     .glass-card:hover { transform: translateY(-6px); border-color: rgba(255,255,255,0.25); }
 
