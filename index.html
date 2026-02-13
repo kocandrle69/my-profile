@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="cs">
 <head>
@@ -6,23 +7,15 @@
   <title>Jan Kočandrle | Inženýrství & Rovnováha</title>
 
   <style>
-    :root{
-  --bg-dark: #07090c;
-
-  /* UI akcenty (texty, highlight, odkazy) */
-  --accent-1: #007AFF;
-  --accent-2: #7c3aed;
-  --accent-3: #0ea5e9;
-
-  /* ORBY (pozadí) – odděleně */
-  --orb-1: #7c3aed;  /* fialová */
-  --orb-2: #c084fc;  /* světlejší fialová */
-  --orb-3: #f59e0b;  /* teplý amber */
-
-  --text: #ffffff;
-  --glass-bg: rgba(255,255,255,0.04);
-  --glass-border: rgba(255,255,255,0.08);
-}
+    :root {
+      --bg-dark: #07090c;
+      --accent-1: #007AFF; 
+      --accent-2: #7c3aed; 
+      --accent-3: #0ea5e9; 
+      --text: #ffffff;
+      --glass-bg: rgba(255, 255, 255, 0.04);
+      --glass-border: rgba(255, 255, 255, 0.08);
+    }
 
     * { box-sizing: border-box; }
     body, html {
@@ -40,9 +33,9 @@
       position: absolute; border-radius: 50%; filter: blur(120px);
       opacity: 0.45; will-change: transform; animation: float 22s infinite ease-in-out;
     }
-    .orb-1 { background: var(--orb-1); }
-    .orb-2 { background: var(--orb-2); }
-    .orb-3 { background: var(--orb-3); opacity: 0.14; }
+    .orb-1 { width: 50vw; height: 50vw; background: var(--accent-1); top: -10%; left: -5%; }
+    .orb-2 { width: 60vw; height: 60vw; background: var(--accent-2); bottom: -10%; right: -5%; animation-delay: -5s; }
+    .orb-3 { width: 45vw; height: 45vw; background: var(--accent-3); top: 30%; left: 15%; opacity: 0.2; }
 
     @keyframes float {
       0%, 100% { transform: translate(0, 0) scale(1); }
