@@ -8,14 +8,14 @@
 
   <style>
     :root {
-      /* Změna: Světlejší základ pozadí (Deep Slate) */
-      --bg-dark: #12171f; 
+      /* Světlejší tmavý základ pro hloubku */
+      --bg-dark: #0f141a; 
       --accent-1: #007AFF; 
-      --accent-2: #7c3aed; 
+      --accent-2: #6366f1; 
       --accent-3: #5AC8FA; 
       --text: #ffffff;
-      /* Změna: Karty jsou nyní o něco světlejší a propustnější */
-      --glass-bg: rgba(255, 255, 255, 0.07);
+      /* Skleněné karty - více průhledné a svítivé */
+      --glass-bg: rgba(255, 255, 255, 0.06);
       --glass-border: rgba(255, 255, 255, 0.12);
     }
 
@@ -27,41 +27,38 @@
       color: var(--text); overflow-x: hidden; scroll-behavior: smooth;
     }
 
-    /* --- FIXNÍ POZADÍ A ORBY --- */
-    /* --- ROZSVÍCENÉ POZADÍ --- */
+    /* --- ROZSVÍCENÉ POZADÍ A ORBY --- */
     .background-wrapper {
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      /* Gradient místo černé plochy */
-      background: radial-gradient(circle at 50% 50%, #1a2330 0%, #12171f 100%);
+      background: radial-gradient(circle at 50% 50%, #1a2330 0%, #0f141a 100%);
     }
 
     .orb {
       position: absolute; border-radius: 50%; filter: blur(100px);
-      /* Změna: Vyšší opacita pro větší "světlo" */
-      opacity: 0.6; 
+      opacity: 0.55; 
       will-change: transform; animation: float 22s infinite ease-in-out;
     }
 
-    /* Orb 1: Zářivá modrá */
+    /* Orb 1: Čistá Apple modrá */
     .orb-1 { 
-      width: 55vw; height: 55vw; 
-      background: radial-gradient(circle, var(--accent-1) 0%, #003a75 70%); 
-      top: -10%; left: -10%; 
+      width: 50vw; height: 50vw; 
+      background: radial-gradient(circle, var(--accent-1) 0%, transparent 70%); 
+      top: -10%; left: -5%; 
     }
 
-    /* Orb 2: Světlejší fialová/indigo */
+    /* Orb 2: Indigo / Fialová pro hloubku */
     .orb-2 { 
-      width: 65vw; height: 65vw; 
-      background: radial-gradient(circle, #6366f1 0%, #312e81 70%); 
-      bottom: -15%; right: -5%; 
+      width: 60vw; height: 60vw; 
+      background: radial-gradient(circle, var(--accent-2) 0%, transparent 70%); 
+      bottom: -10%; right: -5%; 
       animation-delay: -5s; 
     }
 
-    /* Orb 3: Zlatavé "slunce" uprostřed pro vřelost */
+    /* Orb 3: Zlatavé světlo (východ slunce) - dává webu život */
     .orb-3 { 
-      width: 45vw; height: 45vw; 
-      background: radial-gradient(circle, rgba(255,230,150,0.2) 0%, transparent 70%); 
-      top: 20%; left: 15%; 
+      width: 40vw; height: 40vw; 
+      background: radial-gradient(circle, rgba(255,230,150,0.18) 0%, transparent 70%); 
+      top: 25%; left: 15%; 
     }
 
     @keyframes float {
