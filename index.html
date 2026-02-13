@@ -326,5 +326,54 @@
       });
     });
   </script>
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    // Funkce pro otevírání fotek
+    document.querySelectorAll('.glass-card img').forEach(image => {
+      // Ignorujeme screenshoty a hrdinské foto, pokud chceš jen fotky z Karauli, 
+      // ale obvykle je lepší nechat vše
+      image.onclick = (e) => {
+        if (image.closest('section')) return; // Volitelné: neotvírat screenshoty v sekcích
+        openLightbox(image.src);
+      };
+    });
+
+    function openLightbox(src) {
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-img');
+      lbImg.src = src;
+      lb.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Zamezí skrolování pod fotkou
+    }
+
+    function closeLightbox() {
+      const lb = document.getElementById('lightbox');
+      lb.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Původní skript pro pohyb myši (nech ho tam)
+    document.querySelectorAll('.glass-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+    
+    // Původní funkce pro jazyky (nech ji tam)
+    function setLang(lang) {
+      document.body.className = 'lang-' + lang;
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.lang-btn')).find(b => b.innerText === lang.toUpperCase());
+      if(activeBtn) activeBtn.classList.add('active');
+    }
+  </script>
+  
 </body>
 </html>
