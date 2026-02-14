@@ -18,7 +18,6 @@
       --glass-border: rgba(255, 255, 255, 0.12);
     }
 
-    /* LIGHTBOX STYLY */
     .lightbox {
       position: fixed; inset: 0; z-index: 2000;
       background: rgba(7, 9, 12, 0.85);
@@ -34,7 +33,6 @@
       border: 1px solid var(--glass-border);
     }
     .lightbox.active img { transform: scale(1); }
-    
     .glass-card img { cursor: zoom-in; }
 
     .footer-btn {
@@ -89,12 +87,8 @@
     .nav-links a { color: #fff; text-decoration: none; font-size: 14px; opacity: 0.6; transition: 0.3s; }
     .nav-links a:hover { opacity: 1; }
 
-    .lang-switch {
-      display: flex; background: rgba(255,255,255,0.1); border-radius: 50px; padding: 3px; border: 1px solid var(--glass-border);
-    }
-    .lang-btn {
-      padding: 4px 10px; border-radius: 50px; font-size: 11px; font-weight: 700; cursor: pointer; border: none; background: transparent; color: #fff; opacity: 0.4; transition: 0.3s;
-    }
+    .lang-switch { display: flex; background: rgba(255,255,255,0.1); border-radius: 50px; padding: 3px; border: 1px solid var(--glass-border); }
+    .lang-btn { padding: 4px 10px; border-radius: 50px; font-size: 11px; font-weight: 700; cursor: pointer; border: none; background: transparent; color: #fff; opacity: 0.4; transition: 0.3s; }
     .lang-btn.active { background: var(--accent-1); opacity: 1; }
 
     .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: minmax(100px, auto); gap: 24px; }
@@ -173,12 +167,12 @@
             </div>
             
             <div lang="en">
-              <p>As part of global support, I assist manufacturing plants in the fields of printing and coating — from data analysis to systemic solutions that truly improve processes. I focus on causes, not just symptoms, and seek solutions that make long-term sense.</p>
-              <p>I start every day early in the morning with silent meditation — even before the family wakes up and the daily rush begins. This time helps me return to simplicity, mindful breathing, and a perspective that transcends work pressure and the pace of the world around us.</p>
-              <p>Balance is most important to me. Family, our three-year-old daughter, time in nature, and daily practice remind me of what is truly essential — and how to stay calm even in the midst of demanding decisions.</p>
-              <p><strong>Life Balance</strong> is not just a phrase for me. It is a way of life.</p>
+              <p>In the scope of global support, I assist plants in printing and coating — from data analysis to systemic solutions that truly improve processes. I focus on causes, not just symptoms, seeking solutions that make long-term sense.</p>
+              <p>I start every day early with silent meditation — before the family wakes and the daily rush begins. This time helps me return to simplicity, mindful breathing, and a perspective that transcends work pressure and the pace of the world around us.</p>
+              <p>Balance is paramount to me. Family, our three-year-old daughter, time in nature, and daily practice remind me of what truly matters — and how to stay calm even during demanding decisions.</p>
+              <p><strong>Life Balance</strong> is not a phrase for me. It is a way of life.</p>
             </div>
-           
+            <a href="mailto:kocandrle@email.cz" class="btn"><span lang="cs">Kontaktujte mě</span><span lang="en">Contact Me</span></a>
           </div>
           <div class="hero-img-box">
             <img src="family-hero.jpg" alt="Rodina" class="hero-img">
@@ -189,10 +183,16 @@
       <section id="varnish" class="glass-card col-5 card-padding">
         <span class="tag"><span lang="cs">Inženýrský nástroj</span><span lang="en">Engineering Tool</span></span>
         <h2>VarnishCalc</h2>
-        <p lang="cs">VarnishCalc je aplikace, kterou jsem vytvořil z vlastní potřeby mít větší kontrolu nad aplikovanou vrstvou laku — jak během testování, tak při běžném procesním měření ve výrobě.</p>
-        <p lang="en">VarnishCalc is an application I created out of my own need for greater control over the applied coating layer — both during testing and during regular process measurement in production.</p>
-        <p lang="cs">Cílem je jednoduchost, opakovatelnost a praktická použitelnost přímo ve výrobním prostředí.</p>
-        <p lang="en">The goal is simplicity, repeatability, and practical usability directly in the manufacturing environment.</p>
+        <div lang="cs">
+          <p>VarnishCalc je aplikace, kterou jsem vytvořil z vlastní potřeby mít větší kontrolu nad aplikovanou vrstvou laku — jak během testování, tak při běžném procesním měření ve výrobě.</p>
+          <p>Aplikace převádí procesní vstupy na jasná a opakovatelná data — mokrou i suchou vrstvu, tloušťku filmu, plošnou hmotnost i celkovou spotřebu materiálu.</p>
+          <p>Cílem je jednoduchost, opakovatelnost a praktická použitelnost přímo ve výrobním prostředí.</p>
+        </div>
+        <div lang="en">
+          <p>VarnishCalc is an app I created from a need for better control over the applied lacquer layer — both during testing and regular production process measurement.</p>
+          <p>The app converts process inputs into clear, repeatable data — wet and dry layers, film thickness, coat weight, and total material consumption.</p>
+          <p>The goal is simplicity, repeatability, and practical usability directly within the manufacturing environment.</p>
+        </div>
         <div style="margin-top:auto; font-size:12px; opacity:0.5;">Swift • v2.4</div>
       </section>
 
@@ -211,14 +211,18 @@
         <span class="tag"><span lang="cs">Rovnováha</span><span lang="en">Balance</span></span>
         <h2>Karauli Shankar Mahadev Dham</h2>
         <div lang="cs">
-          <p><strong>Karauli Shankar Mahadev Dham</strong> je místo, kam se pravidelně vracím pro perspektivu v době, která je čím dál rychlejší a neklidnější.</p>
+          <p><strong>Karauli Shankar Mahadev Dham</strong> je místo, kam se pravidelně vracím pro perspektivu v době, která je čím dál rychlejší a neklidnější. Svět kolem nás je plný informací, očekávání, tlaku a neustálého pohybu. Je snadné ztratit směr — nebo alespoň vnitřní klid.</p>
           <p>Toto místo mi připomíná, že stabilita nevzniká z vnější kontroly, ale z vnitřního ukotvení. Nejde jen o ticho nebo zpomalení. Jde o návrat k základním otázkám:</p>
           <p>- Co je skutečně důležité?<br>- Jak žít tak, aby radost nebyla náhodná, ale vědomá?</p>
+          <p>Pravidelná meditace — doma i během pobytu v ašramu — není únikem před realitou. Je to způsob, jak realitu vnímat jasněji. Jak zůstat klidný i v prostředí, které klid nepodporuje.</p>
+          <p>V době nejistoty mi toto místo pomáhá připomínat jednoduchou věc: skutečné štěstí není otázkou okolností, ale kvality našeho vědomí. A tu je možné kultivovat každý den.</p>
         </div>
         <div lang="en">
-          <p><strong>Karauli Shankar Mahadev Dham</strong> is a place where I regularly return for perspective in an increasingly faster and more restless age.</p>
-          <p>This place reminds me that stability does not arise from external control, but from internal anchoring. It's about returning to fundamental questions:</p>
-          <p>- What is truly important?<br>- How to live so that joy is not accidental, but intentional?</p>
+          <p><strong>Karauli Shankar Mahadev Dham</strong> is a place I regularly visit for perspective in an increasingly faster and more restless age. The world is full of information, expectations, pressure, and constant movement. It's easy to lose direction — or inner peace.</p>
+          <p>This place reminds me that stability arises not from external control, but from inner anchoring. It's not just about silence. It's about returning to fundamental questions:</p>
+          <p>- What is truly important?<br>- How to live so joy is not accidental, but intentional?</p>
+          <p>Regular meditation — at home or in the ashram — is not an escape. It's a way to see reality more clearly, remaining calm even in environments that don't support peace.</p>
+          <p>In uncertain times, this place reminds me: true happiness is not about circumstances, but the quality of our consciousness. And that can be cultivated daily.</p>
         </div>
       </section>
 
@@ -237,6 +241,8 @@
       <section id="meditace" class="glass-card col-12 card-padding" style="text-align:center;">
         <span class="tag"><span lang="cs">Audio projekt</span><span lang="en">Audio Project</span></span>
         <h2><span lang="cs">Meditační podcast</span><span lang="en">Meditation Podcast</span></h2>
+        <p lang="cs">Autentické nahrávky meditací vedených gurudevem. Podcast umožňuje znovu se napojit na atmosféru místa a prohloubit osobní praxi i doma.</p>
+        <p lang="en">Authentic recordings of meditations led by the Gurudev. The podcast allows you to reconnect with the atmosphere of the place even at home.</p>
         <div style="padding: 20px 0; display: flex; justify-content: center;">
           <img src="podcast-screenshot.png" style="max-width:380px; width:90%; border-radius:24px; border: 1px solid var(--glass-border); box-shadow: 0 30px 60px rgba(0,0,0,0.5);">
         </div>
@@ -272,7 +278,6 @@
   </div>
 
   <script>
-    // 1. Přepínání jazyků
     function setLang(lang) {
       document.body.className = 'lang-' + lang;
       document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
@@ -280,10 +285,9 @@
       if(activeBtn) activeBtn.classList.add('active');
     }
 
-    // 2. Lightbox (Zvětšování fotek)
     document.querySelectorAll('.glass-card img').forEach(image => {
       image.onclick = (e) => {
-        if (image.closest('section')) return; // Neotvírat screenshoty v textových sekcích
+        if (image.closest('section')) return; 
         openLightbox(image.src);
       };
     });
@@ -302,7 +306,6 @@
       document.body.style.overflow = 'auto';
     }
 
-    // 3. Efekt pohybu myši na kartách
     document.querySelectorAll('.glass-card').forEach(card => {
       card.addEventListener('mousemove', e => {
         const rect = card.getBoundingClientRect();
